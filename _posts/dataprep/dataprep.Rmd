@@ -28,7 +28,7 @@ opts_chunk$set(echo=FALSE,
 
 ## The data: gold-standard preparation
 
-We have pre-cleaned the data and hand-coded it for genre. That is the gold standard. In addition, speech prefixes were retained and systematically set to all-caps. Stage directions were removed. Below is a screenshot of the current version. 
+We have pre-cleaned the data and hand-coded it for genre. That is the gold standard. In addition, speech prefixes were retained and systematically set to all-caps. Stage directions were removed. Below is a screenshot of the current version.
 
 ```{r, echo=F, fig.cap="Current version of the text: pre-cleaned and hand-tagged for genre."}
 knitr::include_graphics("shrew_markup.png", dpi=190)
