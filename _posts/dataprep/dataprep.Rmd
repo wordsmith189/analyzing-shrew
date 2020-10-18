@@ -11,6 +11,8 @@ date: 10-17-2020
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup}
@@ -38,11 +40,11 @@ Reading in the file, the head looks as below.
 ```{r}
 text <- read_docx("shrew_markup.docx") %>% 
   enframe("linenumber", "text")
+
 text  %>% 
   head(10) %>% 
-  kbl(caption = "The text as initial R object.") %>% 
-  kable_styling(full_width = F, 
-                position = "left") 
+  kbl(caption="The text as initial R object.") %>% 
+  kable_styling()
 ```
 
 ### Current size
@@ -51,9 +53,34 @@ The text has been read line-by-line. The current length is `r nrow(text) %>% for
 
 ## Further processing
 
-The following steps should be taken before any analysis can happen.
+The following items need to happen before any analysis.
 
-1. Convert the text to one-word-per-row format. This step typically removes all punctuation and changes upper-case letters to lower-case letters. *We don't want either of these* so I'll set the arguments `to_lower` and `strip_punct` accordingly.
-1. Edit those speech prefixes that, like the huntsmen, consist of more than one token.
-1. Find all words in all-upper-case spelling -- these are the speech prefixes. Use them to mark each row with the current speaker.
-1. Find all instances of *act* or *actus* and use them to identify boundaries between acts. Add a column that states the act for each unit of text.
+1. We'll want to convert the text to one-word-per-row format. This step typically (a) removes all punctuation and (b) changes upper-case to lower-case letters. We **don't really want either** of these, but getting rid of punctution is darn useful. Therefore, to address a) I'll change our XML format tags (e.g. `<prose>...</prose>`) to lexical tags, i.e. made-up words I can be sure Shakespeare didn't use in the play: `prosestart ... proseend`, `versestart ... verseend`. This will allow me to still remove any punctuation, while retaining the valuable genre tagging. 
+
+<aside>Why not? We are relying on capitalization to identify speech prefixes, and on punctuation to identify genre tagging.</aside>
+
+2. Edit those speech prefixes that, like the huntsmen, consist of more than one token.
+3. At this point, "tokenize", i.e. change format to one-word-per-row.
+4. Identify all words in all-caps spelling -- we know these are the speech prefixes. Use them to mark each row for the current speaker.
+5. Identify all genre tags. Use them to mark each row for `prose` or `verse` as genre.
+6. Find all instances of *act* or *actus* and use them to identify boundaries between acts. Add a column that states the act for each unit of text.
+
+I'll now work down this list and show the state of the text after each conversion.
+
+#### Change genre tags to lexical tags
+
+
+#### Edit speech prefixes
+
+
+#### Tokenize
+
+
+#### Mark each row for current speaker
+
+
+#### Mark each row for current genre
+
+
+#### Mark each row for current act 
+

@@ -1,7 +1,7 @@
 ---
-title: "Some Numbers"
+title: "2 - Some Numbers"
 description: |
-  A short description of the post.
+  Descriptive statistics about the text's dimensions by genre, speaker, and act.
 author:
   - name: "Lars Hinrichs"
     url: https://larshinrichs.site
@@ -12,13 +12,13 @@ draft: true
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
 

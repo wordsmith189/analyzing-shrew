@@ -3,6 +3,7 @@ title: "The Text Analysis of the Shrew"
 description: |
   The Text Analysis of the Shrew
 output_dir: "_site"
+google_analytics: "UA-5137412-18"
 author:
   - name: "Lars Hinrichs"
     url: https://larshinrichs.site

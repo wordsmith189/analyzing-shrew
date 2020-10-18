@@ -12,8 +12,8 @@
     "date": "2020-10-17",
     "categories": [],
     "preview": "posts/dataprep/shrew_markup.png",
-    "last_modified": "2020-10-18T00:40:07-04:00",
-    "input_file": "dataprep.utf8.md"
+    "last_modified": "2020-10-18T08:26:04-04:00",
+    "input_file": {}
   },
   {
     "path": "posts/introduction/",
@@ -29,6 +29,6 @@
     "categories": [],
     "preview": "posts/introduction/toolbox.png",
     "last_modified": "2020-10-18T00:25:37-04:00",
-    "input_file": "introduction.utf8.md"
+    "input_file": {}
   }
 ]
