@@ -1105,7 +1105,7 @@ to thy cold bed, and warm thee. &lt;/prose&gt;
 <h2 id="further-processing">Further processing</h2>
 <p>The following items need to happen before any analysis.</p>
 <ol type="1">
-<li>We’ll want to convert the text to one-word-per-row format. This step typically (a) removes all punctuation and (b) changes upper-case to lower-case letters. We <strong>don’t really want either</strong> of these, but getting rid of punctution is darn useful. Therefore, to address a) I’ll change our XML format tags (e.g. <code>&lt;prose&gt;...&lt;/prose&gt;</code>) to lexical tags, i.e. made-up words I can be sure Shakespeare didn’t use in the play: <code>prosestart ... proseend</code>, <code>versestart ... verseend</code>. This will allow me to still remove any punctuation, while retaining the valuable genre tagging.</li>
+<li>We’ll want to convert the text to one-word-per-row format. This step typically (a) removes all punctuation and (b) changes upper-case to lower-case letters. We <strong>don’t really want either</strong> of these, but getting rid of punctution is darn useful. So we will want punctuation removed, but we need to do something to retain the valuable genre-tagging. To address a), then, I’ll change our XML format tags (e.g. <code>&lt;prose&gt;...&lt;/prose&gt;</code>) to lexical tags, i.e. made-up words I can be sure Shakespeare didn’t use in the play: <code>prosestart ... proseend</code>, <code>versestart ... verseend</code>. This will allow me to still remove any punctuation while retaining the genre tagging.</li>
 </ol>
 <aside>
 Why not? We are relying on capitalization to identify speech prefixes, and on punctuation to identify genre tagging.
