@@ -1,0 +1,4291 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+  <title>A Look at the Toolbox</title>
+  
+  <meta property="description" itemprop="description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
+  
+  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-10-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-10-14"/>
+  <meta name="article:author" content="Lars Hinrichs"/>
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="A Look at the Toolbox"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="A Look at the Toolbox"/>
+  <meta property="twitter:description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["A Look at the Toolbox"]},{"type":"character","attributes":{},"value":["Some background on methods and possibilities of digital text analysis, specifically in studying plays.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["introduction_files/bowser-1.9.3/bowser.min.js","introduction_files/distill-2.2.21/template.v2.js","introduction_files/figure-html5/unnamed-chunk-16-1.png","introduction_files/figure-html5/unnamed-chunk-17-1.png","introduction_files/figure-html5/unnamed-chunk-18-1.png","introduction_files/figure-html5/unnamed-chunk-19-1.png","introduction_files/figure-html5/unnamed-chunk-20-1.png","introduction_files/jquery-1.11.3/jquery.min.js","introduction_files/kePrint-0.0.1/kePrint.js","introduction_files/lightable-0.0.1/lightable.css","introduction_files/webcomponents-2.0.0/webcomponents.js","play_with_speaker.csv","pos_tagset.png","prose and verse csv 500 words.docx","Prose and Verse from Shrew.docx","sa1.png","sa2.png","sa3.png","sa4.png","sa5.png","semantic_tagset.png","toolbox.png","welcome_files/bowser-1.9.3/bowser.min.js","welcome_files/distill-2.2.21/template.v2.js","welcome_files/jquery-1.11.3/jquery.min.js","welcome_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for table of contents */
+  
+  .d-toc {
+    color: rgba(0,0,0,0.8);
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+  
+  .d-toc-header {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 1.3em;
+  }
+  
+  .d-toc a {
+    border-bottom: none;
+  }
+  
+  .d-toc ul {
+    padding-left: 0;
+  }
+  
+  .d-toc li>ul {
+    padding-top: 0.8em;
+    padding-left: 16px;
+    margin-bottom: 0.6em;
+  }
+  
+  .d-toc ul,
+  .d-toc li {
+    list-style-type: none;
+  }
+  
+  .d-toc li {
+    margin-bottom: 0.9em;
+  }
+  
+  .d-toc-separator {
+    margin-top: 20px;
+    margin-bottom: 2em;
+  }
+  
+  .d-article-with-toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  
+  
+  
+  /* Tweak code blocks (note that this CSS is repeated above in an injection
+     into the d-code shadow dom) */
+  
+  d-code {
+    overflow-x: auto !important;
+  }
+  
+  pre.d-code code.d-code {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  pre.text-output {
+  
+    font-size: 12px;
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
+  pre.d-code code.d-code  {
+      padding-left: 18px;
+      font-size: 14px;
+  }
+  pre.text-output {
+    font-size: 14px;
+  }
+  }
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // create d-bibliography
+    var bibliography = $('<d-bibliography></d-bibliography>');
+    $('#distill-bibliography').wrap(bibliography);
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace citations with <d-cite>
+    $('.citation').each(function(i, val) {
+      appendix = true;
+      var cites = $(this).attr('data-cites').split(" ");
+      var dt_cite = $('<d-cite></d-cite>');
+      dt_cite.attr('key', cites.join());
+      $(this).replaceWith(dt_cite);
+    });
+    // remove refs
+    $('#refs').remove();
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // replace code blocks with d-code
+    $('pre>code').each(function(i, val) {
+      var code = $(this);
+      var pre = code.parent();
+      var clz = "";
+      var language = pre.attr('class');
+      if (language) {
+        // map unknown languages to "clike" (without this they just dissapear)
+        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                                 "javascript", "js", "julia", "lua", "markdown",
+                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
+          language = "clike";
+        language = ' language="' + language + '"';
+        var dt_code = $('<d-code block' + language + clz + '></d-code>');
+        dt_code.text(code.text());
+        pre.replaceWith(dt_code);
+      } else {
+        code.addClass('text-output').unwrap().changeElementType('pre');
+      }
+    });
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('d-code, pre.text-output, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // table of contents
+      if (have_authors) // adjust border if we are in authors
+        $('.d-toc').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+      $('d-code').each(function(i, val) {
+        var style = document.createElement('style');
+        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+        if (this.shadowRoot)
+          this.shadowRoot.appendChild(style);
+      });
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-toc-header').remove();
+    $('.d-toc').remove();
+    $('.d-toc-separator').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="introduction_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="introduction_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <script src="introduction_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="introduction_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="introduction_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="introduction_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"A Look at the Toolbox","description":"Some background on methods and possibilities of digital text analysis, specifically in studying plays.","authors":[{"author":"Lars Hinrichs","authorURL":"https://larshinrichs.site","affiliation":"The University of Texas at Austin","affiliationURL":"https://liberalarts.utexas.edu/english"}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Hinrichs, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>A Look at the Toolbox</h1>
+<p>Some background on methods and possibilities of digital text analysis, specifically in studying plays.</p>
+</div>
+
+<div class="d-byline">
+  Lars Hinrichs <a href="https://larshinrichs.site" class="uri">https://larshinrichs.site</a> (The University of Texas at Austin)<a href="https://liberalarts.utexas.edu/english" class="uri">https://liberalarts.utexas.edu/english</a>
+  
+<br/>10-14-2020
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="toolbox.png" width="174" /></p>
+</div>
+<h2 id="digital-text-analysis-a-look-at-the-toolbox">Digital text analysis: a look at the toolbox</h2>
+<p>Having read <a href="https://www.nytimes.com/2020/10/12/style/self-care/social-media-.html">the NYT piece</a> about social media text analysis, and perhaps from your own life in this digital world of ours!!, you have at least heard about some of the methods that a “computational sociolinguist” or a “digital humanist” might apply to text.</p>
+<h3 id="sentiment-analysis">Sentiment analysis</h3>
+<h4 id="positive-versus-negative-words">“Positive” versus “negative” words</h4>
+<figure>
+<img src="sa1.png" alt="Sentiment analysis: n pos v. n neg per text." /><figcaption>Sentiment analysis: n pos v. n neg per text.</figcaption>
+</figure>
+<figure>
+<img src="sa2.png" alt="Sentiment analysis: comparing pos:neg ratios." /><figcaption>Sentiment analysis: comparing pos:neg ratios.</figcaption>
+</figure>
+<figure>
+<img src="sa3.png" alt="Sentiment analysis: split each text into 100 slices, then track sentiment curve." /><figcaption>Sentiment analysis: split each text into 100 slices, then track sentiment curve.</figcaption>
+</figure>
+<figure>
+<img src="sa4.png" alt="Sentiment analysis: same as above, but with act boundaries marked." /><figcaption>Sentiment analysis: same as above, but with act boundaries marked.</figcaption>
+</figure>
+<h4 id="tag-for-more-than-2-emotions">Tag for more than 2 emotions</h4>
+<figure>
+<img src="sa5.png" alt="Sentiment analysis: pos, neg, and 8 other sentiment categories." /><figcaption>Sentiment analysis: pos, neg, and 8 other sentiment categories.</figcaption>
+</figure>
+<h3 id="tag-for-parts-of-speech">Tag for parts of speech</h3>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+knitr::include_graphics(&quot;pos_tagset.png&quot;, dpi=100)</code></pre>
+<p><img src="pos_tagset.png" width="369" /></p>
+</div>
+<h3 id="tag-for-semantic-classes">Tag for semantic classes</h3>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+knitr::include_graphics(&quot;semantic_tagset.png&quot;, dpi=100)</code></pre>
+<p><img src="semantic_tagset.png" width="884" /></p>
+</div>
+<h2 id="start-by-loading-our-data">Start by loading our data</h2>
+<p>First we’ll get an inventory of all the .DOCX files in our project directory.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+(textfiles &lt;- list.files(pattern = &quot;.docx&quot;))</code></pre>
+<pre><code>
+[1] &quot;prose and verse csv 500 words.docx&quot;
+[2] &quot;Prose and Verse from Shrew.docx&quot;   </code></pre>
+</div>
+<p>The second file has more formatting and may, for the time being, be more useful. We’ll read it in. Here is the top of its content.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+f &lt;- read_docx(textfiles[2])
+f %&gt;% head(10)</code></pre>
+<pre><code>
+ [1] &quot;I am  Christophero  Sly; call not me &#39; honour &#39; nor &#39;lordship.&#39; I&quot;
+ [2] &quot;ne&#39;er drank sack in my life; and if you give me any conserves,&quot;   
+ [3] &quot;give me conserves of beef. Ne&#39;er ask me what raiment I&#39;ll wear,&quot;  
+ [4] &quot;for I have no more doublets than backs, no more stockings than&quot;   
+ [5] &quot;legs, nor no more shoes than feet- nay, sometime more feet than&quot;  
+ [6] &quot;shoes, or such shoes as my toes look through the  overleather .&quot;  
+ [7] &quot;Lord. Heaven cease this idle  humour  in your  honour !&quot;          
+ [8] &quot;What, would you make me mad? Am not I Christopher Sly, old&quot;       
+ [9] &quot;Sly&#39;s  son of Burton Heath; by birth a  pedlar , by education a&quot;  
+[10] &quot;cardmaker , by transmutation a bear-herd, and now by present&quot;     </code></pre>
+</div>
+<p>Here it is, converted to tabular format.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+f &lt;- 
+  f %&gt;% 
+  enframe() %&gt;% 
+  select(line = 2) %&gt;% 
+  mutate(file = textfiles[2])
+f %&gt;% 
+  head(10) %&gt;% 
+  kbl() %&gt;% 
+  kable_styling(bootstrap_options = &quot;striped&quot;, 
+                full_width = F, 
+                position = &quot;left&quot;) </code></pre>
+<table class="table table-striped" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+line
+</th>
+<th style="text-align:left;">
+file
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I am Christophero Sly; call not me ’ honour ’ nor ‘lordship.’ I
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ne’er drank sack in my life; and if you give me any conserves,
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+give me conserves of beef. Ne’er ask me what raiment I’ll wear,
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+for I have no more doublets than backs, no more stockings than
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+legs, nor no more shoes than feet- nay, sometime more feet than
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shoes, or such shoes as my toes look through the overleather .
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lord. Heaven cease this idle humour in your honour !
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+What, would you make me mad? Am not I Christopher Sly, old
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sly’s son of Burton Heath; by birth a pedlar , by education a
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cardmaker , by transmutation a bear-herd, and now by present
+</td>
+<td style="text-align:left;">
+Prose and Verse from Shrew.docx
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="narrowing-down-our-interest">Narrowing down our interest</h2>
+<p>I have just received the latest notes from class: the interest seems to be in the difference between verse and prose <em>crossed with</em> an interest in character. I interpret this to mean that there are characters that appear both in verse and in prose sections, and we <mark>want to know how the language associated with each character differs from verse to prose.</mark></p>
+<p>In the text samples I have, character speech is not marked. We might be better off if we pull <em>Taming of the Shrew</em> from www.gutenberg.org.</p>
+<p>Luckily there is an R module that interfaces with the Gutenberg archives. It is called <code>gutenbergr</code>. I will pull the whole text from there.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+shakespeare &lt;- 
+  gutenberg_works(author == &quot;Shakespeare, William&quot;) 
+
+shakespeare                    %&gt;% 
+  mutate(entry = row_number()) %&gt;% 
+  select(entry, title)  %&gt;% 
+  kbl() %&gt;% 
+  kable_styling(bootstrap_options = &quot;striped&quot;, 
+                full_width = F, 
+                position = &quot;left&quot;) </code></pre>
+<table class="table table-striped" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+entry
+</th>
+<th style="text-align:left;">
+title
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Shakespeare’s Sonnets
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Venus and Adonis
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+King Henry VI, First Part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+History of King Henry the Sixth, Second Part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+The History of King Henry the Sixth, Third Part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+The Tragedy of King Richard III
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+The Comedy of Errors
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+The Rape of Lucrece
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+The Tragedy of Titus Andronicus
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+The Two Gentlemen of Verona
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Love’s Labour’s Lost
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+King John
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+The Tragedy of King Richard the Second
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Romeo and Juliet
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+A Midsummer Night’s Dream
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+The Merchant of Venice
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+King Henry IV, the First Part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+The Merry Wives of Windsor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+King Henry IV, Second Part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Much Ado about Nothing
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+The Life of King Henry V
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+Julius Caesar
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+As You Like It
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+Hamlet, Prince of Denmark
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+The Phoenix and the Turtle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+Twelfth Night; Or, What You Will
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+The History of Troilus and Cressida
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+All’s Well That Ends Well
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+Measure for Measure
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+Othello, the Moor of Venice
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+The Tragedy of King Lear
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+Macbeth
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Antony and Cleopatra
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+The Tragedy of Coriolanus
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+The Life of Timon of Athens
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+Pericles, Prince of Tyre
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+Cymbeline
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+The Winter’s Tale
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+The Tempest
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+The Life of Henry the Eighth
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+A Lover’s Complaint
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+The Passionate Pilgrim
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+Twelfth Night
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+Richard II
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+Henry IV, Part 1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+Henry V
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+Henry VI, Part 1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+Henry VI, Part 2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+Henry VI, Part 3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+Richard III
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+Henry VIII
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+Coriolanus
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+Titus Andronicus
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+Timon of Athens
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+Hamlet
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+King Lear
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+Othello
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+Shakespeare’s First Folio
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+The Tragicall Historie of Hamlet, Prince of Denmarke The First (‘Bad’) Quarto
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+The Tragedie of Hamlet, Prince of Denmark A Study with the Text of the Folio of 1623
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+Shakespeare’s play of the Merchant of Venice Arranged for Representation at the Princess’s Theatre, with Historical and Explanatory Notes by Charles Kean, F.S.A.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:left;">
+King Henry the Fifth Arranged for Representation at the Princess’s Theatre
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [9 vols.] Introduction and Publisher’s Advertising
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+The Tempest The Works of William Shakespeare [Cambridge Edition] [9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+Two Gentlemen of Verona The Works of William Shakespeare [Cambridge Edition] [9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+The Merry Wives of Windsor The Works of William Shakespeare [Cambridge Edition] [9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+Measure for Measure The Works of William Shakespeare [Cambridge Edition] [9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+The Comedy of Errors The Works of William Shakespeare [Cambridge Edition] [9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+The New Hudson Shakespeare: Julius Cæsar
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [Vol. 2]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+Shakespeare’s Comedy of The Tempest
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [Vol. 7 of 9]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+Shakespeare’s Tragedy of Romeo and Juliet
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [Vol. 6 of 9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [Vol. 8 of 9 vols.]
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare [Cambridge Edition] [Vol. 5 of 9] I, II, and III King Henry Sixth; King Richard III; and two other related plays.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare - Cambridge Edition (4 of 9) (1863)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+The Works of William Shakespeare - Cambridge Edition (3 of 9) (1863)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So our text is there and available, at index no. 10.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+IDs &lt;-  shakespeare[c(10),]$gutenberg_id
+
+shakespeare %&gt;% 
+  filter(gutenberg_id %in% IDs) %&gt;% 
+  select(gutenberg_id, title)</code></pre>
+<pre><code>
+# A tibble: 1 x 2
+  gutenberg_id title                  
+         &lt;int&gt; &lt;chr&gt;                  
+1         1508 The Taming of the Shrew</code></pre>
+</div>
+<p>Let’s download the play and store it in an R object. I will call it <code>plays</code> (plural in case we add more texts or something.)</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+plays &lt;- gutenberg_download(IDs, meta_fields = &quot;title&quot;)
+
+plays %&gt;% as_tibble()</code></pre>
+<pre><code>
+# A tibble: 4,829 x 3
+   gutenberg_id text                       title                  
+          &lt;int&gt; &lt;chr&gt;                      &lt;chr&gt;                  
+ 1         1508 &quot;THE TAMING OF THE SHREW&quot;  The Taming of the Shrew
+ 2         1508 &quot;&quot;                         The Taming of the Shrew
+ 3         1508 &quot;by William Shakespeare&quot;   The Taming of the Shrew
+ 4         1508 &quot;&quot;                         The Taming of the Shrew
+ 5         1508 &quot;&quot;                         The Taming of the Shrew
+ 6         1508 &quot;&quot;                         The Taming of the Shrew
+ 7         1508 &quot;&quot;                         The Taming of the Shrew
+ 8         1508 &quot;Dramatis Personae&quot;        The Taming of the Shrew
+ 9         1508 &quot;&quot;                         The Taming of the Shrew
+10         1508 &quot;Persons in the Induction&quot; The Taming of the Shrew
+# … with 4,819 more rows</code></pre>
+</div>
+<p>I’ll convert the data to one-word-per row now. It’s the format we need for any of these analyses.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+sentiments &lt;- plays %&gt;%
+  #group_by(title) %&gt;%
+  mutate(line = row_number()) %&gt;% 
+  unnest_tokens(word, text,
+                to_lower = F) 
+
+sentiments %&gt;% 
+  slice(150:190) %&gt;% 
+  kbl() %&gt;% 
+  kable_styling(bootstrap_options = &quot;striped&quot;, 
+                full_width = F, 
+                position = &quot;left&quot;) </code></pre>
+<table class="table table-striped" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+gutenberg_id
+</th>
+<th style="text-align:left;">
+title
+</th>
+<th style="text-align:right;">
+line
+</th>
+<th style="text-align:left;">
+word
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+Therefore
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+paucas
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+pallabris
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+let
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+the
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+world
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+slide
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+Sessa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+You
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+will
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+not
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+pay
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+for
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+the
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+glasses
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+you
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+have
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+burst
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+not
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+denier
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Go
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+by
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Saint
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Jeronimy
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+go
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+to
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+thy
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+cold
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+bed
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+and
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+warm
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:left;">
+thee
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+know
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+my
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:left;">
+remedy
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With my well-trained eye, I notice that “character names designating who’s speaking” are all set in all-caps. Given this material property, we can insert a column into the data that states, for each word, who is speaking it.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+play_with_speaker &lt;- 
+  sentiments %&gt;% 
+  mutate(speaker = NA)
+
+two_word_name &lt;- FALSE
+
+speakername &lt;- NA
+
+for (i in (1:nrow(play_with_speaker))){
+  
+  # define the word that this loop looks at
+  myword = play_with_speaker[i,] %&gt;% 
+    pull(word)
+  
+  # check whether word is identitcal to its all-caps conversion
+  # if yes, then set it as speaker name
+  if (myword == toupper(myword) &amp; nchar(myword) &gt; 1){
+    speakername = myword
+  }
+  
+  # write speaker name in speaker column
+  play_with_speaker$speaker[i] = speakername
+  cat(&quot;\014&quot;, i, &quot;of&quot;, nrow(play_with_speaker))
+}
+cat(&quot;\014&quot;)</code></pre>
+</div>
+<p>We’ll export the dataset we’ve created so that next time the chunk won’t need to run. We’ll only need to import the data then.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+play_with_speaker %&gt;% 
+  export(&quot;play_with_speaker.csv&quot;)</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+play_with_speaker &lt;- 
+  import(&quot;play_with_speaker.csv&quot;)</code></pre>
+</div>
+<p>Let’s get a printout of the number of words spoken by each character.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+play_with_speaker %&gt;% 
+  count(speaker, sort = T) %&gt;% 
+  filter(n &gt; 25) %&gt;% 
+  kbl(caption = &quot;Words per character (showing only those with more than 25)&quot;) %&gt;% 
+  kable_styling(position = &quot;left&quot;,
+                bootstrap_options = &quot;striped&quot;, 
+                full_width = F)</code></pre>
+<table class="table table-striped" style="width: auto !important; ">
+<caption>
+<span id="tab:unnamed-chunk-14">Table 1: </span>Words per character (showing only those with more than 25)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+speaker
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PETRUCHIO
+</td>
+<td style="text-align:right;">
+4494
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:right;">
+2423
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KATHERINA
+</td>
+<td style="text-align:right;">
+1900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HORTENSIO
+</td>
+<td style="text-align:right;">
+1882
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:right;">
+1625
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GRUMIO
+</td>
+<td style="text-align:right;">
+1540
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GREMIO
+</td>
+<td style="text-align:right;">
+1354
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BAPTISTA
+</td>
+<td style="text-align:right;">
+1177
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIONDELLO
+</td>
+<td style="text-align:right;">
+933
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:right;">
+808
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIANCA
+</td>
+<td style="text-align:right;">
+677
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SERVANT
+</td>
+<td style="text-align:right;">
+600
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:right;">
+598
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VINCENTIO
+</td>
+<td style="text-align:right;">
+469
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEDANT
+</td>
+<td style="text-align:right;">
+453
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PLAYERS
+</td>
+<td style="text-align:right;">
+214
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CURTIS
+</td>
+<td style="text-align:right;">
+199
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TAILOR
+</td>
+<td style="text-align:right;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PAGE
+</td>
+<td style="text-align:right;">
+136
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SERVANTS
+</td>
+<td style="text-align:right;">
+112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WIDOW
+</td>
+<td style="text-align:right;">
+112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+<td style="text-align:right;">
+110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SCENE
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PLAYER
+</td>
+<td style="text-align:right;">
+35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:right;">
+34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NATHANIEL
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For later use, let’s retain a list of the speakers who have significant enough amounts of speech. Let’s set the cutoff even a bit higher, at 400 words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+sig_speakers &lt;- 
+  play_with_speaker %&gt;% 
+  count(speaker) %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  filter(n &gt;400) %&gt;% 
+  pull(speaker)
+sig_speakers</code></pre>
+<pre><code>
+ [1] &quot;PETRUCHIO&quot; &quot;TRANIO&quot;    &quot;KATHERINA&quot; &quot;HORTENSIO&quot; &quot;LUCENTIO&quot; 
+ [6] &quot;GRUMIO&quot;    &quot;GREMIO&quot;    &quot;BAPTISTA&quot;  &quot;BIONDELLO&quot; &quot;LORD&quot;     
+[11] &quot;BIANCA&quot;    &quot;SERVANT&quot;   &quot;SLY&quot;       &quot;VINCENTIO&quot; &quot;PEDANT&quot;   </code></pre>
+</div>
+<p>Below is a preview of the data format in which every row shows in the <code>speaker</code> column which character speaks it.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+play_with_speaker %&gt;% 
+  slice(340:400) %&gt;% 
+  kbl() %&gt;% 
+  kable_styling(position = &quot;left&quot;,
+                full_width = F)</code></pre>
+<table class="table" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+gutenberg_id
+</th>
+<th style="text-align:left;">
+title
+</th>
+<th style="text-align:right;">
+line
+</th>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:left;">
+speaker
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+esteem
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+him
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+worth
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+dozen
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:left;">
+such
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+But
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+sup
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+them
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+and
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+unto
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+them
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+To
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+morrow
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+intend
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+to
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+hunt
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+again
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:left;">
+FIRST
+</td>
+<td style="text-align:left;">
+FIRST
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:left;">
+lord
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+115
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+Sees
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+Sly
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+What’s
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+here
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+One
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+dead
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+or
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+drunk
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:left;">
+See
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:left;">
+doth
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:left;">
+he
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:left;">
+breathe
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:left;">
+SECOND
+</td>
+<td style="text-align:left;">
+SECOND
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+He
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+breathes
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+lord
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+Were
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+he
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+not
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+warm’d
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+with
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+ale
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+This
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+were
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+bed
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+but
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+cold
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+to
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1508
+</td>
+<td style="text-align:left;">
+The Taming of the Shrew
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:left;">
+sleep
+</td>
+<td style="text-align:left;">
+HUNTSMAN
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="tag-for-sentiment">Tag for sentiment</h2>
+<p>For now, we’ll just tag for pos. and neg. sentiment words</p>
+<div class="layout-chunk" data-layout="l-body">
+
+<pre class="r"><code>
+sentiment &lt;- 
+  play_with_speaker %&gt;% 
+  mutate(word = tolower(word)) %&gt;% 
+  anti_join(stop_words) %&gt;%          
+  inner_join(get_sentiments(&quot;bing&quot;)) %&gt;% 
+  select(speaker, word, sentiment)
+
+sentiment %&gt;% 
+  slice(300:330) %&gt;% 
+  kbl(position = &quot;left&quot;) %&gt;% 
+  kable_paper(full_width = F)</code></pre>
+<table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:left;">
+speaker
+</th>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:left;">
+sentiment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+sweet
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+beauty
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+humble
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+scold
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+din
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+sweet
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+cruel
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+charm
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+pleasure
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+loves
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+slave
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+rogue
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIONDELLO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+quarrel
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUCENTIO
+</td>
+<td style="text-align:left;">
+fear
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+faith
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRANIO
+</td>
+<td style="text-align:left;">
+master
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+sly
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+saint
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+sly
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+excellent
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PETRUCHIO
+</td>
+<td style="text-align:left;">
+beloved
+</td>
+<td style="text-align:left;">
+positive
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PETRUCHIO
+</td>
+<td style="text-align:left;">
+knock
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GRUMIO
+</td>
+<td style="text-align:left;">
+knock
+</td>
+<td style="text-align:left;">
+negative
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With this data available, we can now plot the sentiment-per-speaker.</p>
+<p>First we’ll make a second dataset that is “wider”: it has one row per speaker and it summarizes <code>n_neg, n_pos, n_total,</code> and <code>neg_ratio.</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+sentiment_wide &lt;- 
+  sentiment %&gt;% 
+  filter(speaker %in% sig_speakers) %&gt;% 
+  count(speaker, sentiment) %&gt;% 
+  pivot_wider(
+    names_from = sentiment,
+    values_from = n
+  ) %&gt;% 
+  mutate(n_total = negative + positive,
+         neg_ratio = negative/positive) %&gt;% 
+  rename(n_neg = negative,
+         n_pos = positive)</code></pre>
+</div>
+<p>Some of this info will be useful to have in the main dataset <code>sentiment</code>. Therefore we’ll <code>left_join()</code> the two.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<pre class="r"><code>
+sentiment %&gt;% 
+  filter(speaker %in% sig_speakers) %&gt;% 
+  count(speaker, sentiment) %&gt;% 
+  left_join(select(sentiment_wide, speaker, n_total)) %&gt;% 
+  #---start plot code---#
+  ggplot(aes(x = sentiment,
+             y = n/n_total,
+             fill = speaker)) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  geom_bar(stat = &quot;identity&quot;,
+           position = &quot;dodge&quot;) +
+  scale_fill_viridis_d() +
+  facet_wrap(~speaker) + 
+  labs(y=&quot;sentiment words scored&quot;) +
+  theme_classic(base_family = &quot;Roboto Condensed&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-19"></span>
+<img src="introduction_files/figure-html5/unnamed-chunk-19-1.png" alt="The ratio between neg. and pos.-coded words by character." width="624" />
+<p class="caption">
+Figure 1: The ratio between neg. and pos.-coded words by character.
+</p>
+</div>
+</div>
+<p>Let’s now plot just one bar for each speaker, the neg:pos ratio (or <code>neg_ratio</code>, as I will call it). So the highest value will be for the character with the most negative words.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<pre class="r"><code>
+sentiment_wide %&gt;% 
+  #---start plot code---#
+  ggplot(aes(x = reorder(speaker, neg_ratio),
+             y = neg_ratio,
+             fill = -(neg_ratio)
+             )) +
+   geom_hline(yintercept = 1,
+             colour=&quot;black&quot;, 
+             linetype=&quot;dashed&quot;) +
+  geom_col(alpha=0.8) +
+  scale_fill_viridis_b() +
+  labs(
+    title=&quot;Sentiment ratio by character&quot;,
+    subtitle=&quot;Values &gt; 1 indicate greater negative counts&quot;,
+    caption=&quot;The Taming of the Shrew&quot;,
+    y=&quot;negative vs. positive words&quot;,
+       x=NULL) +
+  coord_flip() +
+  theme_classic(base_family = &quot;Roboto Condensed&quot;) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-20"></span>
+<img src="introduction_files/figure-html5/unnamed-chunk-20-1.png" alt="Sly must be miserable to be around." width="624" />
+<p class="caption">
+Figure 2: Sly must be miserable to be around.
+</p>
+</div>
+</div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

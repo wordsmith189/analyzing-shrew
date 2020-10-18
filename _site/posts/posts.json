@@ -1,0 +1,34 @@
+[
+  {
+    "path": "posts/dataprep/",
+    "title": "Data Preparation",
+    "description": "Preparation of the pre-cleaned and speaker/genre-tagged play text.",
+    "author": [
+      {
+        "name": "Lars Hinrichs",
+        "url": "https://larshinrichs.site"
+      }
+    ],
+    "date": "2020-10-17",
+    "categories": [],
+    "preview": "posts/dataprep/shrew_markup.png",
+    "last_modified": "2020-10-17T23:40:08-04:00",
+    "input_file": "dataprep.utf8.md"
+  },
+  {
+    "path": "posts/introduction/",
+    "title": "A Look at the Toolbox",
+    "description": "Some background on methods and possibilities of digital text analysis, specifically in studying plays.",
+    "author": [
+      {
+        "name": "Lars Hinrichs",
+        "url": "https://larshinrichs.site"
+      }
+    ],
+    "date": "2020-10-14",
+    "categories": [],
+    "preview": "posts/introduction/toolbox.png",
+    "last_modified": "2020-10-17T23:37:34-04:00",
+    "input_file": {}
+  }
+]
