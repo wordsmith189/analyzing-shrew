@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/some-numbers/",
+    "title": "2 - Some Numbers",
+    "description": "Descriptive statistics about the text's dimensions by genre, speaker, and act.",
+    "author": [
+      {
+        "name": "Lars Hinrichs",
+        "url": "https://larshinrichs.site"
+      }
+    ],
+    "date": "2020-10-18",
+    "categories": [],
+    "preview": "posts/some-numbers/numbers.jpg",
+    "last_modified": "2020-10-18T09:06:37-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/dataprep/",
     "title": "1 - Data Preparation",
     "description": "Preparation of the pre-cleaned and speaker/genre-tagged play text.",
@@ -12,8 +28,8 @@
     "date": "2020-10-17",
     "categories": [],
     "preview": "posts/dataprep/shrew_markup.png",
-    "last_modified": "2020-10-18T08:30:01-04:00",
-    "input_file": "dataprep.utf8.md"
+    "last_modified": "2020-10-18T08:30:02-04:00",
+    "input_file": {}
   },
   {
     "path": "posts/introduction/",

@@ -44,12 +44,12 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","draft","output"]}},"value":[{"type":"character","attributes":{},"value":["2 - Some Numbers"]},{"type":"character","attributes":{},"value":["Descriptive statistics about the text's dimensions by genre, speaker, and act.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-18-2020"]},{"type":"logical","attributes":{},"value":[true]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","draft","output"]}},"value":[{"type":"character","attributes":{},"value":["2 - Some Numbers"]},{"type":"character","attributes":{},"value":["Descriptive statistics about the text's dimensions by genre, speaker, and act.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-18-2020"]},{"type":"logical","attributes":{},"value":[false]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["some-numbers_files/bowser-1.9.3/bowser.min.js","some-numbers_files/distill-2.2.21/template.v2.js","some-numbers_files/jquery-1.11.3/jquery.min.js","some-numbers_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["numbers.jpg","some-numbers_files/bowser-1.9.3/bowser.min.js","some-numbers_files/distill-2.2.21/template.v2.js","some-numbers_files/jquery-1.11.3/jquery.min.js","some-numbers_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -973,7 +973,35 @@
 </div>
 
 <div class="d-article">
-
+<h3 class="d-toc-header">Table of Contents</h3>
+<nav class="d-toc" id="TOC">
+<ul>
+<li><a href="#descriptive-statistics">Descriptive statistics</a></li>
+<li><a href="#research-questions">Research questions</a></li>
+</ul>
+</nav>
+<hr class="d-toc-separator"/>
+<h2 id="descriptive-statistics">Descriptive statistics</h2>
+<p>Everything we’ve done to the text so far, including the hand coding, is called <strong>text mining</strong>. By conducting some counts and visualizations here of the distributions in our variables of interest, we are moving into what data scientists call <strong>descriptive statistics</strong>. (And the next level of statistical complexity would be called predictive statistics, or modeling, or machine learning, or AI.)</p>
+<aside>
+Our “variables of interest” are, for now: <strong>genre</strong>, <strong>speaker</strong>, and <strong>act</strong>.
+</aside>
+<p>Many digital text analysis projects are best served by careful descriptive statistics, and this is one of them.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="numbers.jpg" width="350" /></p>
+</div>
+<h2 id="research-questions">Research questions</h2>
+<p>Received from Doug Bruster via email.</p>
+<ol type="a">
+<li>How many words of verse in this play?</li>
+<li>How many words of prose?</li>
+<li>How many of each does each character speak?</li>
+<li>What is the overall sentiment of the verse speeches?</li>
+<li>What is the overall sentiment of the prose speeches?</li>
+<li>Is there a discrepancy in the sentiment of the verse a certain character speaks as opposed to the sentiment of the prose he or she speaks (that is, a wider or narrower gap than the average difference of the two media)?</li>
+<li>Are verse and prose made up of different kinds of words (for example, are the words in one medium longer in terms of character count than the other)?</li>
+<li>Are the lexicons of verse and prose ordered differently? (That is, do the most frequent words differ from one to the other?)</li>
+</ol>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

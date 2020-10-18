@@ -8,7 +8,7 @@ author:
     affiliation: "The University of Texas at Austin"
     affiliation_url: https://liberalarts.utexas.edu/english
 date: 10-18-2020
-draft: true
+draft: false
 output:
   distill::distill_article:
     self_contained: false
@@ -17,8 +17,33 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      cache = TRUE)
+```
+
+## Descriptive statistics
+
+Everything we've done to the text so far, including the hand coding, is called **text mining**. By conducting some counts and visualizations here of the distributions in our variables of interest, we are moving into what data scientists call **descriptive statistics**. (And the next level of statistical complexity would be called predictive statistics, or modeling, or machine learning, or AI.)
+
+<aside>Our "variables of interest" are, for now: **genre**, **speaker**, and **act**.</aside>
+
+Many digital text analysis projects are best served by careful descriptive statistics, and this is one of them.
+
+```{r}
+knitr::include_graphics("numbers.jpg")
 ```
 
 
+## Research questions
+
+Received from Doug Bruster via email. 
+
+a) How many words of verse in this play?
+b) How many words of prose?
+c) How many of each does each character speak?
+d) What is the overall sentiment of the verse speeches?
+e) What is the overall sentiment of the prose speeches?
+f) Is there a discrepancy in the sentiment of the verse a certain character speaks as opposed to the sentiment of the prose he or she speaks (that is, a wider or narrower gap than the average difference of the two media)?
+g) Are verse and prose made up of different kinds of words (for example, are the words in one medium longer in terms of character count than the other)?
+h) Are the lexicons of verse and prose ordered differently? (That is, do the most frequent words differ from one to the other?)
 
