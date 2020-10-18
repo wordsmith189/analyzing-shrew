@@ -18,6 +18,71 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
   <title>0 - A Look at the Toolbox</title>
   
@@ -44,7 +109,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["0 - A Look at the Toolbox"]},{"type":"character","attributes":{},"value":["Some background on methods and possibilities of digital text analysis, specifically in studying plays.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["0 - A Look at the Toolbox"]},{"type":"character","attributes":{},"value":["Some background on methods and possibilities of digital text analysis, specifically in studying plays.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -75,6 +140,51 @@
   
   .pagedtable-footer {
     font-size: 15px;
+  }
+  
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+  
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+  
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+  
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+  
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+  
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
   }
   
   .html-widget {
@@ -116,6 +226,7 @@
   }
   
   d-article {
+    padding-top: 2.5rem;
     padding-bottom: 30px;
   }
   
@@ -127,91 +238,48 @@
     width: 100%;
   }
   
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+  
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+  
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
   
-  figure img.external {
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-    padding: 18px;
-    box-sizing: border-box;
+  /* Tweak code blocks */
+  
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
   
-  /* CSS for table of contents */
-  
-  .d-toc {
-    color: rgba(0,0,0,0.8);
-    font-size: 0.8em;
-    line-height: 1em;
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: hidden;
   }
   
-  .d-toc-header {
-    font-size: 0.6rem;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.5);
-    text-transform: uppercase;
-    margin-top: 0;
-    margin-bottom: 1.3em;
+  d-article div.sourceCode {
+    background-color: white;
   }
   
-  .d-toc a {
-    border-bottom: none;
-  }
-  
-  .d-toc ul {
-    padding-left: 0;
-  }
-  
-  .d-toc li>ul {
-    padding-top: 0.8em;
-    padding-left: 16px;
-    margin-bottom: 0.6em;
-  }
-  
-  .d-toc ul,
-  .d-toc li {
-    list-style-type: none;
-  }
-  
-  .d-toc li {
-    margin-bottom: 0.9em;
-  }
-  
-  .d-toc-separator {
-    margin-top: 20px;
-    margin-bottom: 2em;
-  }
-  
-  .d-article-with-toc {
-    border-top: none;
-    padding-top: 0;
-  }
-  
-  
-  
-  /* Tweak code blocks (note that this CSS is repeated above in an injection
-     into the d-code shadow dom) */
-  
-  d-code {
-    overflow-x: auto !important;
-  }
-  
-  pre.d-code code.d-code {
+  d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
   
-  pre.text-output {
-  
+  d-article pre {
     font-size: 12px;
     color: black;
     background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    margin-top: 0;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -229,20 +297,123 @@
     hyphens: none;
   }
   
+  d-article pre a {
+    border-bottom: none;
+  }
+  
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+  
   @media(min-width: 768px) {
   
-  d-code {
-    overflow-x: visible !important;
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
   }
   
-  pre.d-code code.d-code  {
-      padding-left: 18px;
-      font-size: 14px;
-  }
-  pre.text-output {
+  d-article div.sourceCode pre {
+    padding-left: 18px;
     font-size: 14px;
   }
+  
+  d-article pre {
+    font-size: 14px;
   }
+  
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for d-contents */
+  
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+  
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+  
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+  
+  .d-contents li {
+    list-style-type: none
+  }
+  
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+  
+  .d-contents ul {
+    padding-left: 1em
+  }
+  
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+  
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+  
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+  
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+  
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+  
+  
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+  
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+  
   
   /* Figure */
   
@@ -280,6 +451,16 @@
     color: rgba(0, 0, 0, 1.0);
   }
   
+  /* Citations */
+  
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+  
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
   
   
   /* Tweak 1000px media break to show more text */
@@ -355,6 +536,91 @@
     word-wrap: break-word;
   }
   
+  /* Include appendix styles here so they can be overridden */
+  
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+  
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+  
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+  
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+  
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+  
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+  
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  d-appendix > * {
+    grid-column: text;
+  }
+  
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+  
+  /* Include footnote styles here so they can be overridden */
+  
+  d-footnote-list {
+    contain: layout style;
+  }
+  
+  d-footnote-list > * {
+    grid-column: text;
+  }
+  
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+  
+  
+  
+  /* Anchor.js */
+  
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
   
   /* Social footer */
   
@@ -409,6 +675,211 @@
   
   .custom p {
     margin-bottom: 0.5em;
+  }
+  
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+  
+  /* Styles for posts lists (not auto-injected) */
+  
+  
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+  
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+  
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+  
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+  
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+  
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+  
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+  
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+  
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+  
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+  
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+  
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .posts-list img {
+    opacity: 1;
+  }
+  
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+  
+  .posts-more {
+    clear: both;
+  }
+  
+  
+  .posts-sidebar {
+    font-size: 16px;
+  }
+  
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+  
+  .categories li>a {
+    border-bottom: none;
+  }
+  
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+  
+  .categories .active {
+    font-weight: 600;
+  }
+  
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
   }
   
   
@@ -540,6 +1011,12 @@
     hyphens: none;
   }
   
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+  
+  
+  
   </style>
   
   <script type="application/javascript">
@@ -555,6 +1032,13 @@
   
   // show body when load is complete
   function on_load_complete() {
+  
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+  
   
     // set body to visible
     document.body.style.visibility = 'visible';
@@ -601,23 +1085,8 @@
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
   
-    // create d-bibliography
-    var bibliography = $('<d-bibliography></d-bibliography>');
-    $('#distill-bibliography').wrap(bibliography);
-  
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
-    // replace citations with <d-cite>
-    $('.citation').each(function(i, val) {
-      appendix = true;
-      var cites = $(this).attr('data-cites').split(" ");
-      var dt_cite = $('<d-cite></d-cite>');
-      dt_cite.attr('key', cites.join());
-      $(this).replaceWith(dt_cite);
-    });
-    // remove refs
-    $('#refs').remove();
   
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
@@ -635,39 +1104,21 @@
     // remove footnotes
     $('.footnotes').remove();
   
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+  
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
     $('h3.appendix').each(function(i, val) {
       var id = $(this).attr('id');
-      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
   
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
-    // replace code blocks with d-code
-    $('pre>code').each(function(i, val) {
-      var code = $(this);
-      var pre = code.parent();
-      var clz = "";
-      var language = pre.attr('class');
-      if (language) {
-        // map unknown languages to "clike" (without this they just dissapear)
-        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
-                                 "javascript", "js", "julia", "lua", "markdown",
-                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
-          language = "clike";
-        language = ' language="' + language + '"';
-        var dt_code = $('<d-code block' + language + clz + '></d-code>');
-        dt_code.text(code.text());
-        pre.replaceWith(dt_code);
-      } else {
-        code.addClass('text-output').unwrap().changeElementType('pre');
-      }
-    });
   
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
@@ -676,7 +1127,7 @@
       var layout = $(this).attr('data-layout');
   
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('d-code, pre.text-output, script');
+      var elements = $(this).children().not('div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -693,6 +1144,13 @@
       $(this).children().unwrap();
     });
   
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+  
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+  
     // load distill framework
     load_distill_framework();
   
@@ -708,12 +1166,26 @@
       if (!have_authors)
         $('d-byline').addClass('hidden');
   
-      // table of contents
-      if (have_authors) // adjust border if we are in authors
-        $('.d-toc').parent().addClass('d-article-with-toc');
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
   
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
   
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
@@ -763,14 +1235,9 @@
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
   
-      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
-      $('d-code').each(function(i, val) {
-        var style = document.createElement('style');
-        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
-                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
-        if (this.shadowRoot)
-          this.shadowRoot.appendChild(style);
-      });
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
   
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
@@ -806,9 +1273,7 @@
     $('.d-byline a').remove();
   
     // remove toc
-    $('.d-toc-header').remove();
-    $('.d-toc').remove();
-    $('.d-toc-separator').remove();
+    $('.d-contents').remove();
   
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
@@ -940,6 +1405,7 @@
   <script src="introduction_files/kePrint-0.0.1/kePrint.js"></script>
   <link href="introduction_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="introduction_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="introduction_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="introduction_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="introduction_files/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="introduction_files/distill-2.2.21/template.v2.js"></script>
@@ -954,7 +1420,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"0 - A Look at the Toolbox","description":"Some background on methods and possibilities of digital text analysis, specifically in studying plays.","authors":[{"author":"Lars Hinrichs","authorURL":"https://larshinrichs.site","affiliation":"The University of Texas at Austin","affiliationURL":"https://liberalarts.utexas.edu/english"}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Hinrichs, 2020"}
+{"title":"0 - A Look at the Toolbox","description":"Some background on methods and possibilities of digital text analysis, specifically in studying plays.","authors":[{"author":"Lars Hinrichs","authorURL":"https://larshinrichs.site","affiliation":"The University of Texas at Austin","affiliationURL":"https://liberalarts.utexas.edu/english","orcidID":""}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Hinrichs, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -965,6 +1431,8 @@
 
 <div class="d-title">
 <h1>0 - A Look at the Toolbox</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
 <p>Some background on methods and possibilities of digital text analysis, specifically in studying plays.</p>
 </div>
 
@@ -975,6 +1443,24 @@
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#what-is-digital-text-analysis">What is digital text analysis?</a><ul>
+<li><a href="#sentiment-analysis">Sentiment analysis</a><ul>
+<li><a href="#positive-versus-negative-words">“Positive” versus “negative” words</a></li>
+<li><a href="#tag-for-more-than-2-emotions">Tag for more than 2 emotions</a></li>
+</ul></li>
+<li><a href="#tag-for-parts-of-speech">Tag for parts of speech</a></li>
+<li><a href="#tag-for-semantic-classes">Tag for semantic classes</a></li>
+</ul></li>
+<li><a href="#start-by-loading-our-data">Start by loading our data</a></li>
+<li><a href="#narrowing-down-our-interest">Narrowing down our interest</a></li>
+<li><a href="#tag-for-sentiment">Tag for sentiment</a></li>
+</ul>
+</nav>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -1003,32 +1489,26 @@
 </figure>
 <h3 id="tag-for-parts-of-speech">Tag for parts of speech</h3>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-knitr::include_graphics(&quot;pos_tagset.png&quot;, dpi=100)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;pos_tagset.png&quot;</span>, <span class="dt">dpi=</span><span class="dv">100</span>)</a></code></pre></div>
 <p><img src="pos_tagset.png" width="369" /></p>
 </div>
 <h3 id="tag-for-semantic-classes">Tag for semantic classes</h3>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-knitr::include_graphics(&quot;semantic_tagset.png&quot;, dpi=100)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;semantic_tagset.png&quot;</span>, <span class="dt">dpi=</span><span class="dv">100</span>)</a></code></pre></div>
 <p><img src="semantic_tagset.png" width="884" /></p>
 </div>
 <h2 id="start-by-loading-our-data">Start by loading our data</h2>
 <p>First we’ll get an inventory of all the .DOCX files in our project directory.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-(textfiles &lt;- list.files(pattern = &quot;.docx&quot;))</code></pre>
-<pre><code>
-[1] &quot;prose and verse csv 500 words.docx&quot;
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">(textfiles &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;.docx&quot;</span>))</a></code></pre></div>
+<pre><code>[1] &quot;prose and verse csv 500 words.docx&quot;
 [2] &quot;Prose and Verse from Shrew.docx&quot;   </code></pre>
 </div>
 <p>The second file has more formatting and may, for the time being, be more useful. We’ll read it in. Here is the top of its content.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-f &lt;- read_docx(textfiles[2])
-f %&gt;% head(10)</code></pre>
-<pre><code>
- [1] &quot;I am  Christophero  Sly; call not me &#39; honour &#39; nor &#39;lordship.&#39; I&quot;
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">read_docx</span>(textfiles[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
+<pre><code> [1] &quot;I am  Christophero  Sly; call not me &#39; honour &#39; nor &#39;lordship.&#39; I&quot;
  [2] &quot;ne&#39;er drank sack in my life; and if you give me any conserves,&quot;   
  [3] &quot;give me conserves of beef. Ne&#39;er ask me what raiment I&#39;ll wear,&quot;  
  [4] &quot;for I have no more doublets than backs, no more stockings than&quot;   
@@ -1042,18 +1522,17 @@ f %&gt;% head(10)</code></pre>
 <p>Here it is, converted to tabular format.</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-f &lt;- 
-  f %&gt;% 
-  enframe() %&gt;% 
-  select(line = 2) %&gt;% 
-  mutate(file = textfiles[2])
-f %&gt;% 
-  head(10) %&gt;% 
-  kbl() %&gt;% 
-  kable_styling(bootstrap_options = &quot;striped&quot;, 
-                full_width = F, 
-                position = &quot;left&quot;) </code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">f &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>f <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">enframe</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(<span class="dt">line =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">file =</span> textfiles[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">f <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span><span class="kw">kbl</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">                <span class="dt">full_width =</span> F, </a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">                <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) </a></code></pre></div>
 <table class="table table-striped" style="width: auto !important; ">
 <thead>
 <tr>
@@ -1155,17 +1634,16 @@ Prose and Verse from Shrew.docx
 <p>Luckily there is an R module that interfaces with the Gutenberg archives. It is called <code>gutenbergr</code>. I will pull the whole text from there.</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-shakespeare &lt;- 
-  gutenberg_works(author == &quot;Shakespeare, William&quot;) 
-
-shakespeare                    %&gt;% 
-  mutate(entry = row_number()) %&gt;% 
-  select(entry, title)  %&gt;% 
-  kbl() %&gt;% 
-  kable_styling(bootstrap_options = &quot;striped&quot;, 
-                full_width = F, 
-                position = &quot;left&quot;) </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">shakespeare &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">gutenberg_works</span>(author <span class="op">==</span><span class="st"> &quot;Shakespeare, William&quot;</span>) </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">shakespeare                    <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">entry =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(entry, title)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="st">  </span><span class="kw">kbl</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">                <span class="dt">full_width =</span> F, </a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">                <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) </a></code></pre></div>
 <table class="table table-striped" style="width: auto !important; ">
 <thead>
 <tr>
@@ -1815,26 +2293,22 @@ The Works of William Shakespeare - Cambridge Edition (3 of 9) (1863)
 </div>
 <p>So our text is there and available, at index no. 10.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-IDs &lt;-  shakespeare[c(10),]$gutenberg_id
-
-shakespeare %&gt;% 
-  filter(gutenberg_id %in% IDs) %&gt;% 
-  select(gutenberg_id, title)</code></pre>
-<pre><code>
-# A tibble: 1 x 2
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">IDs &lt;-<span class="st">  </span>shakespeare[<span class="kw">c</span>(<span class="dv">10</span>),]<span class="op">$</span>gutenberg_id</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">shakespeare <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(gutenberg_id <span class="op">%in%</span><span class="st"> </span>IDs) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(gutenberg_id, title)</a></code></pre></div>
+<pre><code># A tibble: 1 x 2
   gutenberg_id title                  
          &lt;int&gt; &lt;chr&gt;                  
 1         1508 The Taming of the Shrew</code></pre>
 </div>
 <p>Let’s download the play and store it in an R object. I will call it <code>plays</code> (plural in case we add more texts or something.)</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-plays &lt;- gutenberg_download(IDs, meta_fields = &quot;title&quot;)
-
-plays %&gt;% as_tibble()</code></pre>
-<pre><code>
-# A tibble: 4,829 x 3
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">plays &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(IDs, <span class="dt">meta_fields =</span> <span class="st">&quot;title&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">plays <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a></code></pre></div>
+<pre><code># A tibble: 4,829 x 3
    gutenberg_id text                       title                  
           &lt;int&gt; &lt;chr&gt;                      &lt;chr&gt;                  
  1         1508 &quot;THE TAMING OF THE SHREW&quot;  The Taming of the Shrew
@@ -1852,19 +2326,18 @@ plays %&gt;% as_tibble()</code></pre>
 <p>I’ll convert the data to one-word-per row now. It’s the format we need for any of these analyses.</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-sentiments &lt;- plays %&gt;%
-  #group_by(title) %&gt;%
-  mutate(line = row_number()) %&gt;% 
-  unnest_tokens(word, text,
-                to_lower = F) 
-
-sentiments %&gt;% 
-  slice(150:190) %&gt;% 
-  kbl() %&gt;% 
-  kable_styling(bootstrap_options = &quot;striped&quot;, 
-                full_width = F, 
-                position = &quot;left&quot;) </code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">sentiments &lt;-<span class="st"> </span>plays <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="co">#group_by(title) %&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text,</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">                <span class="dt">to_lower =</span> F) </a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">sentiments <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">150</span><span class="op">:</span><span class="dv">190</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span><span class="kw">kbl</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">                <span class="dt">full_width =</span> F, </a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">                <span class="dt">position =</span> <span class="st">&quot;left&quot;</span>) </a></code></pre></div>
 <table class="table table-striped" style="width: auto !important; ">
 <thead>
 <tr>
@@ -2465,55 +2938,51 @@ remedy
 A much nicer technical term is <em>speech prefix</em>.
 </aside>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-play_with_speaker &lt;- 
-  sentiments %&gt;% 
-  mutate(speaker = NA)
-
-two_word_name &lt;- FALSE
-
-speakername &lt;- NA
-
-for (i in (1:nrow(play_with_speaker))){
-  
-  # define the word that this loop looks at
-  myword = play_with_speaker[i,] %&gt;% 
-    pull(word)
-  
-  # check whether word is identitcal to its all-caps conversion
-  # if yes, then set it as speaker name
-  if (myword == toupper(myword) &amp; nchar(myword) &gt; 1){
-    speakername = myword
-  }
-  
-  # write speaker name in speaker column
-  play_with_speaker$speaker[i] = speakername
-  cat(&quot;\014&quot;, i, &quot;of&quot;, nrow(play_with_speaker))
-}
-cat(&quot;\014&quot;)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">play_with_speaker &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>sentiments <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">speaker =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">two_word_name &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">speakername &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(play_with_speaker))){</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">  </a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">  <span class="co"># define the word that this loop looks at</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12">  myword =<span class="st"> </span>play_with_speaker[i,] <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="st">    </span><span class="kw">pull</span>(word)</a>
+<a class="sourceLine" id="cb14-14" data-line-number="14">  </a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">  <span class="co"># check whether word is identitcal to its all-caps conversion</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">  <span class="co"># if yes, then set it as speaker name</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17">  <span class="cf">if</span> (myword <span class="op">==</span><span class="st"> </span><span class="kw">toupper</span>(myword) <span class="op">&amp;</span><span class="st"> </span><span class="kw">nchar</span>(myword) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb14-18" data-line-number="18">    speakername =<span class="st"> </span>myword</a>
+<a class="sourceLine" id="cb14-19" data-line-number="19">  }</a>
+<a class="sourceLine" id="cb14-20" data-line-number="20">  </a>
+<a class="sourceLine" id="cb14-21" data-line-number="21">  <span class="co"># write speaker name in speaker column</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22">  play_with_speaker<span class="op">$</span>speaker[i] =<span class="st"> </span>speakername</a>
+<a class="sourceLine" id="cb14-23" data-line-number="23">  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\014</span><span class="st">&quot;</span>, i, <span class="st">&quot;of&quot;</span>, <span class="kw">nrow</span>(play_with_speaker))</a>
+<a class="sourceLine" id="cb14-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\014</span><span class="st">&quot;</span>)</a></code></pre></div>
 </div>
 <p>We’ll export the dataset we’ve created so that next time the chunk won’t need to run. We’ll only need to import the data then.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-play_with_speaker %&gt;% 
-  export(&quot;play_with_speaker.csv&quot;)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">play_with_speaker <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">export</span>(<span class="st">&quot;play_with_speaker.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-play_with_speaker &lt;- 
-  import(&quot;play_with_speaker.csv&quot;)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">play_with_speaker &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">import</span>(<span class="st">&quot;play_with_speaker.csv&quot;</span>)</a></code></pre></div>
 </div>
 <p>Let’s get a printout of the number of words spoken by each character.</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-play_with_speaker %&gt;% 
-  count(speaker, sort = T) %&gt;% 
-  filter(n &gt; 25) %&gt;% 
-  kbl(caption = &quot;Words per character (showing only those with more than 25)&quot;) %&gt;% 
-  kable_styling(position = &quot;left&quot;,
-                bootstrap_options = &quot;striped&quot;, 
-                full_width = F)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">play_with_speaker <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(speaker, <span class="dt">sort =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">kbl</span>(<span class="dt">caption =</span> <span class="st">&quot;Words per character (showing only those with more than 25)&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">position =</span> <span class="st">&quot;left&quot;</span>,</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">                <span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">                <span class="dt">full_width =</span> F)</a></code></pre></div>
 <table class="table table-striped" style="width: auto !important; ">
 <caption>
 <span id="tab:unnamed-chunk-14">Table 1: </span>Words per character (showing only those with more than 25)
@@ -2742,28 +3211,25 @@ NATHANIEL
 </div>
 <p>For later use, let’s retain a list of the speakers who have significant enough amounts of speech. Let’s set the cutoff even a bit higher, at 400 words.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-sig_speakers &lt;- 
-  play_with_speaker %&gt;% 
-  count(speaker) %&gt;% 
-  arrange(desc(n)) %&gt;% 
-  filter(n &gt;400) %&gt;% 
-  pull(speaker)
-sig_speakers</code></pre>
-<pre><code>
- [1] &quot;PETRUCHIO&quot; &quot;TRANIO&quot;    &quot;KATHERINA&quot; &quot;HORTENSIO&quot; &quot;LUCENTIO&quot; 
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">sig_speakers &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span>play_with_speaker <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(speaker) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="st">  </span><span class="kw">pull</span>(speaker)</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">sig_speakers</a></code></pre></div>
+<pre><code> [1] &quot;PETRUCHIO&quot; &quot;TRANIO&quot;    &quot;KATHERINA&quot; &quot;HORTENSIO&quot; &quot;LUCENTIO&quot; 
  [6] &quot;GRUMIO&quot;    &quot;GREMIO&quot;    &quot;BAPTISTA&quot;  &quot;BIONDELLO&quot; &quot;LORD&quot;     
 [11] &quot;BIANCA&quot;    &quot;SERVANT&quot;   &quot;SLY&quot;       &quot;VINCENTIO&quot; &quot;PEDANT&quot;   </code></pre>
 </div>
 <p>Below is a preview of the data format in which every row shows in the <code>speaker</code> column which character speaks it.</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-play_with_speaker %&gt;% 
-  slice(340:400) %&gt;% 
-  kbl() %&gt;% 
-  kable_styling(position = &quot;left&quot;,
-                full_width = F)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">play_with_speaker <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">340</span><span class="op">:</span><span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">kbl</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">position =</span> <span class="st">&quot;left&quot;</span>,</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">                <span class="dt">full_width =</span> F)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <thead>
 <tr>
@@ -3829,19 +4295,18 @@ HUNTSMAN
 <p>For now, we’ll just tag for pos. and neg. sentiment words</p>
 <div class="layout-chunk" data-layout="l-body">
 
-<pre class="r"><code>
-sentiment &lt;- 
-  play_with_speaker %&gt;% 
-  mutate(word = tolower(word)) %&gt;% 
-  anti_join(stop_words) %&gt;%          
-  inner_join(get_sentiments(&quot;bing&quot;)) %&gt;% 
-  select(speaker, word, sentiment)
-
-sentiment %&gt;% 
-  slice(300:330) %&gt;% 
-  kbl() %&gt;% 
-  kable_styling(position = &quot;left&quot;,
-                full_width = F)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">sentiment &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span>play_with_speaker <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> <span class="kw">tolower</span>(word)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">anti_join</span>(stop_words) <span class="op">%&gt;%</span><span class="st">          </span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(speaker, word, sentiment)</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">sentiment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">300</span><span class="op">:</span><span class="dv">330</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="st">  </span><span class="kw">kbl</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">position =</span> <span class="st">&quot;left&quot;</span>,</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">                <span class="dt">full_width =</span> F)</a></code></pre></div>
 <table class="table" style="width: auto !important; ">
 <thead>
 <tr>
@@ -4204,39 +4669,37 @@ negative
 <p>With this data available, we can now plot the sentiment-per-speaker.</p>
 <p>First we’ll make a second dataset that is “wider”: it has one row per speaker and it summarizes <code>n_neg, n_pos, n_total,</code> and <code>neg_ratio.</code></p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-sentiment_wide &lt;- 
-  sentiment %&gt;% 
-  filter(speaker %in% sig_speakers) %&gt;% 
-  count(speaker, sentiment) %&gt;% 
-  pivot_wider(
-    names_from = sentiment,
-    values_from = n
-  ) %&gt;% 
-  mutate(n_total = negative + positive,
-         neg_ratio = negative/positive) %&gt;% 
-  rename(n_neg = negative,
-         n_pos = positive)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">sentiment_wide &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span>sentiment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(speaker <span class="op">%in%</span><span class="st"> </span>sig_speakers) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(speaker, sentiment) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">    <span class="dt">names_from =</span> sentiment,</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">    <span class="dt">values_from =</span> n</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_total =</span> negative <span class="op">+</span><span class="st"> </span>positive,</a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">         <span class="dt">neg_ratio =</span> negative<span class="op">/</span>positive) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">n_neg =</span> negative,</a>
+<a class="sourceLine" id="cb22-12" data-line-number="12">         <span class="dt">n_pos =</span> positive)</a></code></pre></div>
 </div>
 <p>Some of this info will be useful to have in the main dataset <code>sentiment</code>. Therefore we’ll <code>left_join()</code> the two.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre class="r"><code>
-sentiment %&gt;% 
-  filter(speaker %in% sig_speakers) %&gt;% 
-  count(speaker, sentiment) %&gt;% 
-  left_join(select(sentiment_wide, speaker, n_total)) %&gt;% 
-  #---start plot code---#
-  ggplot(aes(x = sentiment,
-             y = n/n_total,
-             fill = speaker)) +
-  scale_y_continuous(labels = scales::percent_format()) +
-  geom_bar(stat = &quot;identity&quot;,
-           position = &quot;dodge&quot;) +
-  scale_fill_viridis_d() +
-  facet_wrap(~speaker) + 
-  labs(y=&quot;sentiment words scored&quot;) +
-  theme_classic(base_family = &quot;Roboto Condensed&quot;) +
-  theme(legend.position = &quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">sentiment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(speaker <span class="op">%in%</span><span class="st"> </span>sig_speakers) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(speaker, sentiment) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">select</span>(sentiment_wide, speaker, n_total)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">  </span><span class="co">#---start plot code---#</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> sentiment,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">             <span class="dt">y =</span> n<span class="op">/</span>n_total,</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">             <span class="dt">fill =</span> speaker)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">           <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-13" data-line-number="13"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>speaker) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;sentiment words scored&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_family =</span> <span class="st">&quot;Roboto Condensed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-16" data-line-number="16"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-19"></span>
 <img src="introduction_files/figure-html5/unnamed-chunk-19-1.png" alt="The ratio between neg. and pos.-coded words by character." width="624" />
 <p class="caption">
@@ -4246,27 +4709,26 @@ Figure 1: The ratio between neg. and pos.-coded words by character.
 </div>
 <p>Let’s now plot just one bar for each speaker, the neg:pos ratio (or <code>neg_ratio</code>, as I will call it). So the highest value will be for the character with the most negative words.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<pre class="r"><code>
-sentiment_wide %&gt;% 
-  #---start plot code---#
-  ggplot(aes(x = reorder(speaker, neg_ratio),
-             y = neg_ratio,
-             fill = -(neg_ratio)
-             )) +
-   geom_hline(yintercept = 1,
-             colour=&quot;black&quot;, 
-             linetype=&quot;dashed&quot;) +
-  geom_col(alpha=0.8) +
-  scale_fill_viridis_b() +
-  labs(
-    title=&quot;Sentiment ratio by character&quot;,
-    subtitle=&quot;Values &gt; 1 indicate greater negative counts&quot;,
-    caption=&quot;The Taming of the Shrew&quot;,
-    y=&quot;negative vs. positive words&quot;,
-       x=NULL) +
-  coord_flip() +
-  theme_classic(base_family = &quot;Roboto Condensed&quot;) +
-  theme(legend.position = &quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">sentiment_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="co">#---start plot code---#</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(speaker, neg_ratio),</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">             <span class="dt">y =</span> neg_ratio,</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">             <span class="dt">fill =</span> <span class="op">-</span>(neg_ratio)</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">             )) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="st">   </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">             <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>, </a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">             <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_viridis_b</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(</a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">    <span class="dt">title=</span><span class="st">&quot;Sentiment ratio by character&quot;</span>,</a>
+<a class="sourceLine" id="cb24-14" data-line-number="14">    <span class="dt">subtitle=</span><span class="st">&quot;Values &gt; 1 indicate greater negative counts&quot;</span>,</a>
+<a class="sourceLine" id="cb24-15" data-line-number="15">    <span class="dt">caption=</span><span class="st">&quot;The Taming of the Shrew&quot;</span>,</a>
+<a class="sourceLine" id="cb24-16" data-line-number="16">    <span class="dt">y=</span><span class="st">&quot;negative vs. positive words&quot;</span>,</a>
+<a class="sourceLine" id="cb24-17" data-line-number="17">       <span class="dt">x=</span><span class="ot">NULL</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-18" data-line-number="18"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-19" data-line-number="19"><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_family =</span> <span class="st">&quot;Roboto Condensed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-20" data-line-number="20"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-20"></span>
 <img src="introduction_files/figure-html5/unnamed-chunk-20-1.png" alt="Sly must be miserable to be around." width="624" />
 <p class="caption">
@@ -4274,6 +4736,7 @@ Figure 2: Sly must be miserable to be around.
 </p>
 </div>
 </div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
