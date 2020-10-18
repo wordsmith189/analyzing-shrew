@@ -3,6 +3,11 @@ title: "The Text Analysis of the Shrew"
 description: |
   The Text Analysis of the Shrew
 output_dir: "_site"
+author:
+  - name: "Lars Hinrichs"
+    url: https://larshinrichs.site
+    affiliation: "The University of Texas at Austin"
+    affiliation_url: https://liberalarts.utexas.edu/english
 navbar:
   logo: shrew.png
   right:

@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/dataprep/",
-    "title": "Data Preparation",
+    "title": "1 - Data Preparation",
     "description": "Preparation of the pre-cleaned and speaker/genre-tagged play text.",
     "author": [
       {
@@ -12,12 +12,12 @@
     "date": "2020-10-17",
     "categories": [],
     "preview": "posts/dataprep/shrew_markup.png",
-    "last_modified": "2020-10-17T23:40:08-04:00",
+    "last_modified": "2020-10-18T00:22:49-04:00",
     "input_file": {}
   },
   {
     "path": "posts/introduction/",
-    "title": "A Look at the Toolbox",
+    "title": "0 - A Look at the Toolbox",
     "description": "Some background on methods and possibilities of digital text analysis, specifically in studying plays.",
     "author": [
       {
@@ -28,7 +28,7 @@
     "date": "2020-10-14",
     "categories": [],
     "preview": "posts/introduction/toolbox.png",
-    "last_modified": "2020-10-17T23:37:34-04:00",
-    "input_file": {}
+    "last_modified": "2020-10-18T00:25:37-04:00",
+    "input_file": "introduction.utf8.md"
   }
 ]

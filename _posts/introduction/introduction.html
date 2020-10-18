@@ -19,7 +19,7 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-  <title>A Look at the Toolbox</title>
+  <title>0 - A Look at the Toolbox</title>
   
   <meta property="description" itemprop="description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
   
@@ -30,21 +30,21 @@
   <meta name="article:author" content="Lars Hinrichs"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="A Look at the Toolbox"/>
+  <meta property="og:title" content="0 - A Look at the Toolbox"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
   <meta property="og:locale" content="en_US"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="A Look at the Toolbox"/>
+  <meta property="twitter:title" content="0 - A Look at the Toolbox"/>
   <meta property="twitter:description" content="Some background on methods and possibilities of digital text analysis, specifically in studying plays."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["A Look at the Toolbox"]},{"type":"character","attributes":{},"value":["Some background on methods and possibilities of digital text analysis, specifically in studying plays.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["0 - A Look at the Toolbox"]},{"type":"character","attributes":{},"value":["Some background on methods and possibilities of digital text analysis, specifically in studying plays.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Lars Hinrichs"]},{"type":"character","attributes":{},"value":["https://larshinrichs.site"]},{"type":"character","attributes":{},"value":["The University of Texas at Austin"]},{"type":"character","attributes":{},"value":["https://liberalarts.utexas.edu/english"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -954,7 +954,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"A Look at the Toolbox","description":"Some background on methods and possibilities of digital text analysis, specifically in studying plays.","authors":[{"author":"Lars Hinrichs","authorURL":"https://larshinrichs.site","affiliation":"The University of Texas at Austin","affiliationURL":"https://liberalarts.utexas.edu/english"}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Hinrichs, 2020"}
+{"title":"0 - A Look at the Toolbox","description":"Some background on methods and possibilities of digital text analysis, specifically in studying plays.","authors":[{"author":"Lars Hinrichs","authorURL":"https://larshinrichs.site","affiliation":"The University of Texas at Austin","affiliationURL":"https://liberalarts.utexas.edu/english"}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Hinrichs, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -964,7 +964,7 @@
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>A Look at the Toolbox</h1>
+<h1>0 - A Look at the Toolbox</h1>
 <p>Some background on methods and possibilities of digital text analysis, specifically in studying plays.</p>
 </div>
 
@@ -981,7 +981,7 @@
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="toolbox.png" width="174" /></p>
 </div>
-<h2 id="digital-text-analysis-a-look-at-the-toolbox">Digital text analysis: a look at the toolbox</h2>
+<h2 id="what-is-digital-text-analysis">What is digital text analysis?</h2>
 <p>Having read <a href="https://www.nytimes.com/2020/10/12/style/self-care/social-media-.html">the NYT piece</a> about social media text analysis, and perhaps from your own life in this digital world of ours!!, you have at least heard about some of the methods that a “computational sociolinguist” or a “digital humanist” might apply to text.</p>
 <h3 id="sentiment-analysis">Sentiment analysis</h3>
 <h4 id="positive-versus-negative-words">“Positive” versus “negative” words</h4>
@@ -2461,6 +2461,9 @@ remedy
 </table>
 </div>
 <p>With my well-trained eye, I notice that “character names designating who’s speaking” are all set in all-caps. Given this material property, we can insert a column into the data that states, for each word, who is speaking it.</p>
+<aside>
+A much nicer technical term is <em>speech prefix</em>.
+</aside>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 play_with_speaker &lt;- 
@@ -3836,9 +3839,10 @@ sentiment &lt;-
 
 sentiment %&gt;% 
   slice(300:330) %&gt;% 
-  kbl(position = &quot;left&quot;) %&gt;% 
-  kable_paper(full_width = F)</code></pre>
-<table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+  kbl() %&gt;% 
+  kable_styling(position = &quot;left&quot;,
+                full_width = F)</code></pre>
+<table class="table" style="width: auto !important; ">
 <thead>
 <tr>
 <th style="text-align:left;">

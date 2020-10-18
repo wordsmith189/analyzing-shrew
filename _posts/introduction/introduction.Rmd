@@ -1,5 +1,5 @@
 ---
-title: "A Look at the Toolbox"
+title: "0 - A Look at the Toolbox"
 description: |
   Some background on methods and possibilities of digital text analysis, specifically in studying plays.
 author:
@@ -28,7 +28,7 @@ opts_chunk$set(echo=T,
 knitr::include_graphics("toolbox.png")
 ```
 
-## Digital text analysis: a look at the toolbox 
+## What is digital text analysis?
 
 Having read [the NYT piece](https://www.nytimes.com/2020/10/12/style/self-care/social-media-.html) about social media text analysis, and perhaps from your own life in this digital world of ours!!, you have at least heard about some of the methods that a "computational sociolinguist" or a "digital humanist" might apply to text. 
 
@@ -151,8 +151,9 @@ sentiments %>%
                 position = "left") 
 ```
 
-
 With my well-trained eye, I notice that "character names designating who's speaking" are all set in all-caps. Given this material property, we can insert a column into the data that states, for each word, who is speaking it. 
+
+<aside>A much nicer technical term is *speech prefix*.</aside>
 
 ```{r warning=F, eval=FALSE}
 play_with_speaker <- 
@@ -242,8 +243,9 @@ sentiment <-
 
 sentiment %>% 
   slice(300:330) %>% 
-  kbl(position = "left") %>% 
-  kable_paper(full_width = F)
+  kbl() %>% 
+  kable_styling(position = "left",
+                full_width = F)
 
 ```
 
