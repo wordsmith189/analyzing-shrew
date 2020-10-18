@@ -4,6 +4,7 @@ description: |
   The Text Analysis of the Shrew
 output_dir: "_site"
 navbar:
+  logo: shrew.png
   right:
     - text: "Home"
       href: index.html
