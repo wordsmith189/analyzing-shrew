@@ -988,6 +988,7 @@ Figure 1: Current version of the text: pre-cleaned and hand-tagged for genre.
 </p>
 </div>
 </div>
+<h3 id="loading-the-file-into-r">Loading the file into R</h3>
 <p>Reading in the file, the head looks as below.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table" style="width: auto !important; ">
@@ -1088,6 +1089,16 @@ to thy cold bed, and warm thee. &lt;/prose&gt;
 </tbody>
 </table>
 </div>
+<h3 id="current-size">Current size</h3>
+<p>The text has been read line-by-line. The current length is 2 806 lines. As we process it, we’ll find out the number of words.</p>
+<h2 id="further-processing">Further processing</h2>
+<p>The following steps should be taken before any analysis can happen.</p>
+<ol type="1">
+<li>Convert the text to one-word-per-row format. This step typically removes all punctuation and changes upper-case letters to lower-case letters. <em>We don’t want either of these</em> so I’ll set the arguments <code>to_lower</code> and <code>strip_punct</code> accordingly.</li>
+<li>Edit those speech prefixes that, like the huntsmen, consist of more than one token.</li>
+<li>Find all words in all-upper-case spelling – these are the speech prefixes. Use them to mark each row with the current speaker.</li>
+<li>Find all instances of <em>act</em> or <em>actus</em> and use them to identify boundaries between acts. Add a column that states the act for each unit of text.</li>
+</ol>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -31,6 +31,8 @@ We have pre-cleaned the data and hand-coded it for genre. That is the gold stand
 knitr::include_graphics("shrew_markup.png", dpi=190)
 ```
 
+### Loading the file into R
+
 Reading in the file, the head looks as below.
 
 ```{r}
@@ -43,3 +45,15 @@ text  %>%
                 position = "left") 
 ```
 
+### Current size
+
+The text has been read line-by-line. The current length is `r nrow(text) %>% format(big.mark=" ")` lines. As we process it, we'll find out the number of words.
+
+## Further processing
+
+The following steps should be taken before any analysis can happen.
+
+1. Convert the text to one-word-per-row format. This step typically removes all punctuation and changes upper-case letters to lower-case letters. *We don't want either of these* so I'll set the arguments `to_lower` and `strip_punct` accordingly.
+1. Edit those speech prefixes that, like the huntsmen, consist of more than one token.
+1. Find all words in all-upper-case spelling -- these are the speech prefixes. Use them to mark each row with the current speaker.
+1. Find all instances of *act* or *actus* and use them to identify boundaries between acts. Add a column that states the act for each unit of text.
