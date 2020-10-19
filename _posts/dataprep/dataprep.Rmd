@@ -19,11 +19,10 @@ output:
 ```{r setup}
 if (!require(pacman)) install.packages("pacman")
 library(pacman)
-p_load(rio, tidyverse, tidytext, knitr, flextable,
-       kableExtra,
-       textreadr, janitor)
+p_load(rio, tidyverse, tidytext, flextable,
+       kableExtra, textreadr, janitor, knitr)
 opts_chunk$set(echo=FALSE,
-               cache = TRUE)
+               cache = F)
 ```
 
 ## The data: gold-standard preparation
@@ -43,7 +42,7 @@ text <- read_docx("shrew_markup.docx") %>%
   enframe("linenumber", "text")
 
 text  %>% 
-  head(10) %>% 
+  slice(65:75) %>% 
   kbl(caption="The text as initial R object.") %>% 
   kable_styling()
 ```
@@ -61,27 +60,190 @@ The following things need to happen before any analysis.
 <aside>Why not? Because are relying on capitalization to identify speech prefixes, and on punctuation to identify genre tagging.</aside>
 
 2. Edit those speech prefixes that, like the huntsmen, consist of more than one token.
-3. At this point, "tokenize", i.e. change format to one-word-per-row.
-4. Identify all words in all-caps spelling -- we know these are the speech prefixes. Use them to mark each row for the current speaker.
-5. Identify all genre tags. Use them to mark each row for `prose` or `verse` as genre.
-6. Find all instances of *act* or *actus* and use them to identify boundaries between acts. Add a column that states the act for each unit of text.
+3. Mark each line for current act.
+4. At this point, "tokenize", i.e. change format to one-word-per-row.
+5. Identify all words in all-caps spelling -- we know these are the speech prefixes. Use them to mark each row for the current speaker.
+6. Identify all genre tags. Use them to mark each row for `prose` or `verse` as genre.
 
 I'll now work down this list and show the state of the text after each conversion.
 
 #### Change genre tags to lexical tags
 
+```{r}
+text <- 
+  text %>% 
+  mutate(text = str_replace_all(text, 
+                                "<prose>", " prosestart "),
+         text = str_replace_all(text, 
+                                "</prose>", " proseend "),
+         text = str_replace_all(text, 
+                                "<verse>", " versestart "),
+         text = str_replace_all(text, 
+                                "</verse>", " verseend "),
+         )
+text %>% 
+  slice(65:75) %>% 
+  kbl(caption = "Data after genre tags have been changed from XML format to lexical forms.") %>% 
+  kable_styling()
+```
+
 
 #### Edit speech prefixes
+
+I went back to the DOCX file to be able to read better, and tried to find any character name that consisted of more than one token. Here are the ones I came up with. 
+
+<aside>Do let me know if I overlooked any. Additions can be easily made.</aside>
+
+- <1. HUNTSMAN>: change to HUNTSMAN1
+- <2. HUNTSMAN>:  change to HUNTSMAN2
+- <3. SERVANT>:  change to SERVANT3
+- <2. SERVANT>:  change to SERVANT2
+- <1. SERVANT>:  change to SERVANT1
+
+```{r}
+text <- 
+  text %>% 
+  mutate(text = str_replace_all(text, 
+                                "<1. HUNTSMAN>", " HUNTSMAN1 "),
+         text = str_replace_all(text, 
+                                "<2. HUNTSMAN>", " HUNTSMAN2 "),
+         text = str_replace_all(text, 
+                                "<3. SERVANT>", " SERVANT3 "),
+         text = str_replace_all(text, 
+                                "<2. SERVANT>", " SERVANT2 "),
+         text = str_replace_all(text, 
+                                "<1. SERVANT>", " SERVANT1 ")
+         )
+```
+
+No need to display the result here.
+
+#### Mark acts
+
+Based on the tagging of the current text, we will recognize act beginnings by the sequence `|A` at the beginning of a line.
+
+```{r}
+text <- 
+  text %>% 
+  mutate(
+  act =  cumsum(str_detect(text,
+                             regex("^Actus", 
+                                   ignore_case = T)
+                           )
+                ),
+  act = act + 1
+  )
+
+text %>% 
+  slice(65:75) %>% 
+  kbl(caption = "Data after act has been assigned.") %>% 
+  kable_styling()
+```
 
 
 #### Tokenize
 
+We have covered our bases now and can use the default setting of the `unnest_tokens()` function with regard to removal of punctuation, but not with regard to lower-casing across the board.
+
+```{r}
+text <- 
+  text %>% 
+  unnest_tokens(word, text, to_lower = FALSE)
+
+text %>% 
+  slice(65:75) %>% 
+  kbl(caption = "Data after tokenization, with option `to_lower = FALSE`.") %>% 
+  kable_styling()
+```
+
+We can now determine that the play has `r nrow(text) %>% format(big.mark=" ")` words, as that is the number of rows in the text object after tokenization.
 
 #### Mark each row for current speaker
 
+We're adding a new column and marking for each word who the speaker is.
+
+```{r detect speaker, message=F, warning=F, eval=F}
+text <- text %>% mutate(speaker = NA)
+speaking <- NA
+for (i in (1:nrow(text))) {
+  currentword <- text %>% slice(i) %>% pull(word)
+  if (currentword == toupper(currentword) & 
+      nchar(currentword) > 1) {
+    speaking = currentword
+  }
+  text$speaker[i] <- speaking
+  if (i %% 500 == 0) {
+    cat(i, "\n")
+  }
+}
+text %>% export("text_speakers.RDS")
+```
+
+```{r}
+text <- import("text_speakers.RDS")
+
+text %>% 
+  slice(65:85) %>% 
+  kbl(caption = "Data after speaker has been assigned.") %>% 
+  kable_styling()
+```
+Now that the speaker tagging in a dedicated column is in place, we will also remove those rows that contain only a speech prefix. 
+
+```{r}
+text <- 
+  text %>% 
+  filter(word != toupper(word))
+```
 
 #### Mark each row for current genre
 
+```{r detect genre, message=F, warning=F, eval=F}
+text <- text %>% mutate(genre = NA)
+currentgenre <- NA
+tagwords <- c("prosestart", "versestart")
+for (i in (1:nrow(text))) {
+  currentword <- text %>% slice(i) %>% pull(word)
+  if (currentword %in% tagwords) {
+    currentgenre = currentword
+  }
+  if (currentgenre == "prosestart") {
+    text$genre[i] <- "prose"
+  } else {
+    text$genre[i] <- "verse"
+  }
+  if (i %% 500 == 0) {
+    cat(i, "\n")
+  }
+}
+text %>% export("text_genre.RDS")
+```
 
-#### Mark each row for current act 
+```{r}
+text <- import("text_genre.RDS")
+
+text %>% 
+  slice(65:85) %>% 
+  kbl(caption = "Data after genre has been assigned.") %>% 
+  kable_styling()
+```
+
+Now that genres are tagged as well, we will also remove those rows that contain only a (lexical) genre tag. 
+
+```{r}
+text <- 
+  text %>% 
+  filter(! word %in% c("prosestart", "versestart", "proseend", "verseend"))
+```
+
+## The final file
+
+Here is a last view of the data, this time a bit longer.
+
+```{r}
+text %>% 
+  slice(65:125) %>% 
+  kbl(caption = "Data after processing.") %>% 
+  kable_styling()
+```
+
 

@@ -20,9 +20,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,14 +32,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +50,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #545454; font-weight: bold; } /* Annotation */
@@ -114,7 +116,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataprep_files/anchor-4.2.2/anchor.min.js","dataprep_files/bowser-1.9.3/bowser.min.js","dataprep_files/distill-2.2.21/template.v2.js","dataprep_files/jquery-1.11.3/jquery.min.js","dataprep_files/kePrint-0.0.1/kePrint.js","dataprep_files/lightable-0.0.1/lightable.css","dataprep_files/webcomponents-2.0.0/webcomponents.js","shrew_markup.docx","shrew_markup.png","shrew_markup.rtf"]}
+  {"type":"character","attributes":{},"value":["dataprep_files/anchor-4.2.2/anchor.min.js","dataprep_files/bowser-1.9.3/bowser.min.js","dataprep_files/distill-2.2.21/template.v2.js","dataprep_files/jquery-1.11.3/jquery.min.js","dataprep_files/kePrint-0.0.1/kePrint.js","dataprep_files/lightable-0.0.1/lightable.css","dataprep_files/webcomponents-2.0.0/webcomponents.js","shrew_markup.docx","shrew_markup.png","shrew_markup.rtf","text_genre.RDS","text_speakers.RDS"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1433,7 +1435,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <h1>1 - Data Preparation</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>Preparation of the pre-cleaned and speaker/genre-tagged play text.</p>
+<p><p>Preparation of the pre-cleaned and speaker/genre-tagged play text.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1454,11 +1456,12 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#further-processing">Further processing</a><ul>
 <li><a href="#change-genre-tags-to-lexical-tags">Change genre tags to lexical tags</a></li>
 <li><a href="#edit-speech-prefixes">Edit speech prefixes</a></li>
+<li><a href="#mark-acts">Mark acts</a></li>
 <li><a href="#tokenize">Tokenize</a></li>
 <li><a href="#mark-each-row-for-current-speaker">Mark each row for current speaker</a></li>
 <li><a href="#mark-each-row-for-current-genre">Mark each row for current genre</a></li>
-<li><a href="#mark-each-row-for-current-act">Mark each row for current act</a></li>
 </ul></li>
+<li><a href="#the-final-file">The final file</a></li>
 </ul>
 </nav>
 </div>
@@ -1495,111 +1498,2316 @@ text
 <tbody>
 <tr>
 <td style="text-align:right;">
-1
+65
 </td>
 <td style="text-align:left;">
-&lt;SLY&gt;&lt;prose&gt;I’ll pheeze you, in faith.&lt;/prose&gt;
+And when he says he is, say that he dreams,
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2
+66
 </td>
 <td style="text-align:left;">
-&lt;HOSTESS&gt; &lt;prose&gt;A pair of stocks, you rogue! &lt;/prose&gt;
+For he is nothing but a mighty lord.
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-3
+67
 </td>
 <td style="text-align:left;">
-&lt;SLY&gt; &lt;prose&gt;Y’ are a baggage, the Slys are no rogues.
+This do, and do it kindly, gentle sirs;
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-4
+68
 </td>
 <td style="text-align:left;">
-Look in the chronicles; we came in with Richard
+It will be pastime passing excellent,
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-5
+69
 </td>
 <td style="text-align:left;">
-Conqueror.  Therefore paucas pallabris, let the world
+If it be husbanded with modesty. &lt;/verse&gt;
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-6
+70
 </td>
 <td style="text-align:left;">
-slide.  Sessa! &lt;/prose&gt;
+&lt;1. HUNTSMAN&gt; &lt;verse&gt;My lord, I warrant you we will play our part
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-7
+71
 </td>
 <td style="text-align:left;">
-&lt;HOSTESS&gt; &lt;prose&gt;You will not pay for the glasses you have
+As he shall think by our true diligence
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-8
+72
 </td>
 <td style="text-align:left;">
-burst? &lt;/prose&gt;
+He is no less than what we say he is. &lt;/verse&gt;
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-9
+73
 </td>
 <td style="text-align:left;">
-&lt;SLY&gt; &lt;prose&gt;No, not a denier. Go by, Saint Jeronimy! go
+&lt;LORD&gt; &lt;verse&gt;Take him up gently and to bed with him,
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-10
+74
 </td>
 <td style="text-align:left;">
-to thy cold bed, and warm thee. &lt;/prose&gt;
+And each one to his office when he wakes.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Sirrah, go see what trumpet ’tis that sounds.
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <h3 id="current-size">Current size</h3>
-<p>The text has been read line-by-line. The current length is 2 806 lines. As we process it, we’ll find out the number of words.</p>
+<p>The text has been read line-by-line. The current length is 2 799 lines. As we process it, we’ll find out the number of words.</p>
 <h2 id="further-processing">Further processing</h2>
 <p>The following things need to happen before any analysis.</p>
 <ol type="1">
-<li>We’ll want to convert the text to one-word-per-row format. This step typically (a) removes all punctuation and (b) changes upper-case to lower-case letters. We <strong>don’t really want either</strong> of these, but getting rid of punctution is darn useful. So we will want punctuation removed, but we need to do something to retain the valuable genre-tagging. To address a), then, I’ll change our XML format tags (e.g. <code>&lt;prose&gt;...&lt;/prose&gt;</code>) to lexical tags, i.e. made-up words I can be sure Shakespeare didn’t use in the play: <code>prosestart ... proseend</code>, <code>versestart ... verseend</code>. This will allow me to still remove any punctuation while retaining the genre tagging.</li>
+<li>We’ll want to convert the text to one-word-per-row format. This step typically (a) removes all punctuation and (b) changes upper-case to lower-case letters. We <strong>don’t really want either</strong> of these, but getting rid of punctution is darn useful. So we will want punctuation removed, but we need to do something to retain the valuable genre-tagging. To address a), then, I’ll change our XML format tags (e.g. <code>&lt;prose&gt;...&lt;/prose&gt;</code>) to lexical tags, i.e. made-up words I can be sure Shakespeare didn’t use in the play: <code>prosestart ... proseend</code>, <code>versestart ... verseend</code>. This will allow me to still remove any punctuation while retaining the genre tagging.</li>
 </ol>
 <aside>
 Why not? Because are relying on capitalization to identify speech prefixes, and on punctuation to identify genre tagging.
 </aside>
 <ol start="2" type="1">
 <li>Edit those speech prefixes that, like the huntsmen, consist of more than one token.</li>
+<li>Mark each line for current act.</li>
 <li>At this point, “tokenize”, i.e. change format to one-word-per-row.</li>
 <li>Identify all words in all-caps spelling – we know these are the speech prefixes. Use them to mark each row for the current speaker.</li>
 <li>Identify all genre tags. Use them to mark each row for <code>prose</code> or <code>verse</code> as genre.</li>
-<li>Find all instances of <em>act</em> or <em>actus</em> and use them to identify boundaries between acts. Add a column that states the act for each unit of text.</li>
 </ol>
 <p>I’ll now work down this list and show the state of the text after each conversion.</p>
 <h4 id="change-genre-tags-to-lexical-tags">Change genre tags to lexical tags</h4>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 2: </span>Data after genre tags have been changed from XML format to lexical forms.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:left;">
+text
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+And when he says he is, say that he dreams,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+For he is nothing but a mighty lord.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+This do, and do it kindly, gentle sirs;
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+It will be pastime passing excellent,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+If it be husbanded with modesty. verseend
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+&lt;1. HUNTSMAN&gt; versestart My lord, I warrant you we will play our part
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+As he shall think by our true diligence
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+He is no less than what we say he is. verseend
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+&lt;LORD&gt; versestart Take him up gently and to bed with him,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+And each one to his office when he wakes.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Sirrah, go see what trumpet ’tis that sounds.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="edit-speech-prefixes">Edit speech prefixes</h4>
+<p>I went back to the DOCX file to be able to read better, and tried to find any character name that consisted of more than one token. Here are the ones I came up with.</p>
+<aside>
+Do let me know if I overlooked any. Additions can be easily made.
+</aside>
+<ul>
+<li>&lt;1. HUNTSMAN&gt;: change to HUNTSMAN1</li>
+<li>&lt;2. HUNTSMAN&gt;: change to HUNTSMAN2</li>
+<li>&lt;3. SERVANT&gt;: change to SERVANT3</li>
+<li>&lt;2. SERVANT&gt;: change to SERVANT2</li>
+<li>&lt;1. SERVANT&gt;: change to SERVANT1</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>No need to display the result here.</p>
+<h4 id="mark-acts">Mark acts</h4>
+<p>Based on the tagging of the current text, we will recognize act beginnings by the sequence <code>|A</code> at the beginning of a line.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-5">Table 3: </span>Data after act has been assigned.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:left;">
+text
+</th>
+<th style="text-align:right;">
+act
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+And when he says he is, say that he dreams,
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+For he is nothing but a mighty lord.
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:left;">
+This do, and do it kindly, gentle sirs;
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+It will be pastime passing excellent,
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:left;">
+If it be husbanded with modesty. verseend
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+HUNTSMAN1 versestart My lord, I warrant you we will play our part
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+As he shall think by our true diligence
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+He is no less than what we say he is. verseend
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+&lt;LORD&gt; versestart Take him up gently and to bed with him,
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+And each one to his office when he wakes.
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Sirrah, go see what trumpet ’tis that sounds.
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="tokenize">Tokenize</h4>
+<p>We have covered our bases now and can use the default setting of the <code>unnest_tokens()</code> function with regard to removal of punctuation, but not with regard to lower-casing across the board.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-6">Table 4: </span>Data after tokenization, with option <code>to_lower = FALSE</code>.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:right;">
+act
+</th>
+<th style="text-align:left;">
+word
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+denier
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Go
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+by
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Saint
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Jeronimy
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+go
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+to
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thy
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+cold
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+bed
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can now determine that the play has 23 223 words, as that is the number of rows in the text object after tokenization.</p>
 <h4 id="mark-each-row-for-current-speaker">Mark each row for current speaker</h4>
+<p>We’re adding a new column and marking for each word who the speaker is.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-7">Table 5: </span>Data after speaker has been assigned.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:right;">
+act
+</th>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:left;">
+speaker
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+denier
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Go
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+by
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Saint
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Jeronimy
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+to
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thy
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+cold
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+bed
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+and
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+warm
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thee
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+proseend
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+prosestart
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+know
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+remedy
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now that the speaker tagging in a dedicated column is in place, we will also remove those rows that contain only a speech prefix.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h4 id="mark-each-row-for-current-genre">Mark each row for current genre</h4>
-<h4 id="mark-each-row-for-current-act">Mark each row for current act</h4>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-9">Table 6: </span>Data after genre has been assigned.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:right;">
+act
+</th>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:left;">
+speaker
+</th>
+<th style="text-align:left;">
+genre
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+to
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thy
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+cold
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+bed
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+and
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+warm
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thee
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+proseend
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+prosestart
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+know
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+remedy
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+must
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fetch
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thirdborough
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+proseend
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+prosestart
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Third
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+or
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now that genres are tagged as well, we will also remove those rows that contain only a (lexical) genre tag.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="the-final-file">The final file</h2>
+<p>Here is a last view of the data, this time a bit longer.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-11">Table 7: </span>Data after processing.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:right;">
+act
+</th>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:left;">
+speaker
+</th>
+<th style="text-align:left;">
+genre
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+remedy
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+must
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fetch
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thirdborough
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Third
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+or
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fourth
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+or
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fift
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+borough
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+I’ll
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+answer
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+him
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+by
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+law
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+I’ll
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+not
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+budge
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+an
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+inch
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+boy
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+let
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+him
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+and
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+kindly
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Huntsman
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+charge
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thee
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tender
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+my
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+hounds
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Brach
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Merriman
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+poor
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+cur
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+is
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+emboss’d
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+And
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+couple
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Clowder
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+with
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+deep
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mouth’d
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+brach
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Saw’st
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+thou
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+not
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+boy
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+how
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Silver
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+made
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+it
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+At
+</td>
+<td style="text-align:left;">
+LORD
+</td>
+<td style="text-align:left;">
+verse
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
