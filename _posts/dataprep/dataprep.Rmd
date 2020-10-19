@@ -246,4 +246,8 @@ text %>%
   kable_styling()
 ```
 
+```{r final data export}
+text %>% export("text_prepped.RDS")
+```
+
 

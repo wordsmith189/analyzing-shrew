@@ -19,6 +19,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       cache = TRUE)
+pacman::p_load(rio, tidyverse)
 ```
 
 ## Descriptive statistics
@@ -47,3 +48,84 @@ f) Is there a discrepancy in the sentiment of the verse a certain character spea
 g) Are verse and prose made up of different kinds of words (for example, are the words in one medium longer in terms of character count than the other)?
 h) Are the lexicons of verse and prose ordered differently? (That is, do the most frequent words differ from one to the other?)
 
+## Text volume by genre, character, act
+
+```{r load data}
+text <- import("../dataprep/text_prepped.RDS")
+```
+
+### Character
+
+First, let's see which character has how many words.
+
+```{r n words char, fig.cap="Number of words per character."}
+text %>% 
+  count(speaker) %>% 
+  ggplot(aes(x=reorder(speaker, n),
+             y=n, 
+             fill=n)) +
+  geom_col(width = .4) +
+  scale_fill_viridis_c() +
+  scale_y_continuous(labels=function(x) format(x, 
+                                               big.mark = ",")) +
+  coord_flip() +
+  labs(title = "Words per Character",
+       x = NULL,
+       y = NULL) +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(legend.position = "none")
+```
+### Genre
+
+```{r words gnr, fig.cap="Number of words per character."}
+text %>% 
+  count(genre) %>% 
+  ggplot(aes(x=reorder(genre, n),
+             y=n, 
+             fill=n)) +
+  geom_col(width = .4) +
+  scale_fill_viridis_c() +
+  scale_y_continuous(labels=function(x) format(x, 
+                                               big.mark = ",")) +
+  coord_flip() +
+  labs(title = "Words per Genre",
+       x = NULL,
+       y = NULL) +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(legend.position = "none")
+```
+### Genre and Character
+
+```{r char by genre, fig.cap="Number of words per character and genre. Showing top 22 speakers.", layout = "l-outset"}
+topspeakers <- text %>% 
+  count(speaker, sort = T) %>% 
+  rename(total = n) %>% 
+  slice(1:22)
+
+propdata <- 
+  text %>% 
+  count(speaker, genre) %>% 
+  na.omit() %>% 
+  filter(speaker %in% topspeakers$speaker) %>% 
+  left_join(topspeakers) %>% 
+  mutate(prop = n/total)
+
+selorder <- 
+  propdata %>% 
+  filter(genre == "verse") %>% 
+  arrange(-prop)
+
+propdata %>% 
+  ggplot(aes(x=factor(speaker, levels = selorder$speaker),
+             y=prop,
+             fill=genre)) +
+  geom_col(width = .4) +
+  scale_fill_viridis_d() +
+  scale_y_continuous(labels=scales::percent) +
+  coord_flip() +
+  labs(title = "Words per Character and Genre",
+       caption = "The Taming of the Shrew",
+       x = NULL,
+       y = NULL) +
+  theme_classic(base_family = "Arial Narrow") 
+```
