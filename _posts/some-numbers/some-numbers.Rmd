@@ -101,7 +101,7 @@ text %>%
 ```
 ### Genre and Character
 
-```{r char by genre, fig.cap="Number of words per character and genre.", layout = "l-outset"}
+```{r char by genre, fig.cap="Number of words per character and genre.", layout = "l-outset", fig.height=6}
 topspeakers <- text %>% 
   count(speaker, sort = T) %>% 
   rename(total = n) 
