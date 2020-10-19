@@ -50,7 +50,7 @@ h) Are the lexicons of verse and prose ordered differently? (That is, do the mos
 
 ## Text Volume by Genre, Character, Act
 
-```{r load data}
+```{r loaddata}
 text <- import("../dataprep/text_prepped.RDS")
 ```
 
@@ -58,7 +58,7 @@ text <- import("../dataprep/text_prepped.RDS")
 
 First, let's see which character has how many words.
 
-```{r n words char, fig.cap="Number of words per character.", fig.height=6}
+```{r nwordschar, fig.cap="Number of words per character.", fig.height=6}
 text %>% 
   count(speaker) %>% 
   ggplot(aes(x=reorder(speaker, n),
@@ -79,7 +79,7 @@ text %>%
 ```
 ### Genre
 
-```{r words gnr, fig.cap="Number of words per character."}
+```{r wordsgnr, fig.cap="Number of words per character."}
 text %>% 
   count(genre) %>% 
   ggplot(aes(x=reorder(genre, n),
@@ -101,7 +101,7 @@ text %>%
 ```
 ### Genre and Character
 
-```{r char by genre, fig.cap="Number of words per character and genre.", layout = "l-outset", fig.height=6}
+```{r charbygenre, fig.cap="Number of words per character and genre.", layout = "l-outset", fig.height=6}
 topspeakers <- text %>% 
   count(speaker, sort = T) %>% 
   rename(total = n) 
@@ -179,7 +179,7 @@ mixers
 ```
 Let's see how they mix across the five acts. 
 
-```{r mixing by act, fig.height=7, fig.width=11, layout="l-screen-inset shaded"}
+```{r mixingbyact, fig.height=7, fig.width=11, layout="l-screen-inset shaded"}
 pal = wes_palette("BottleRocket2")[1:5]
 text %>% 
   filter(speaker %in% mixers) %>% 
