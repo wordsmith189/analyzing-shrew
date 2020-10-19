@@ -58,7 +58,7 @@ text <- import("../dataprep/text_prepped.RDS")
 
 First, let's see which character has how many words.
 
-```{r n words char, fig.cap="Number of words per character.", fig.height=7}
+```{r n words char, fig.cap="Number of words per character.", fig.height=6}
 text %>% 
   count(speaker) %>% 
   ggplot(aes(x=reorder(speaker, n),
@@ -70,6 +70,7 @@ text %>%
                                                big.mark = ",")) +
   coord_flip() +
   labs(title = "Words per Character",
+       subtitle = "Percent of character's total words",
        caption = "The Taming of the Shrew",
        x = NULL,
        y = NULL) +
@@ -86,30 +87,32 @@ text %>%
              fill=n)) +
   geom_col(width = .4) +
   scale_fill_viridis_c() +
-  scale_y_continuous(labels=function(x) format(x, 
-                                               big.mark = ",")) +
+  scale_y_continuous(labels=function(x) 
+    format(x, big.mark = ",")) +
   coord_flip() +
   labs(title = "Words per Genre",
        caption = "The Taming of the Shrew",
        x = NULL,
        y = NULL) +
+  geom_label(aes(label = format(n, big.mark=","),
+                 y=n-1000), fill="white") +
   theme_classic(base_family = "Arial Narrow") +
   theme(legend.position = "none")
 ```
 ### Genre and Character
 
-```{r char by genre, fig.cap="Number of words per character and genre. Showing top 22 speakers.", layout = "l-outset"}
+```{r char by genre, fig.cap="Number of words per character and genre.", layout = "l-outset"}
 topspeakers <- text %>% 
   count(speaker, sort = T) %>% 
-  rename(total = n) %>% 
-  slice(1:22)
+  rename(total = n) 
 
 propdata <- 
   text %>% 
-  count(speaker, genre) %>% 
-  na.omit() %>% 
-  filter(speaker %in% topspeakers$speaker) %>% 
-  left_join(topspeakers) %>% 
+  janitor::tabyl(speaker, genre) %>% 
+  mutate(total = prose + verse) %>% 
+  pivot_longer(cols = prose:verse,
+               names_to = "genre",
+               values_to = "n") %>% 
   mutate(prop = n/total)
 
 selorder <- 
@@ -126,8 +129,40 @@ propdata %>%
   scale_y_continuous(labels=scales::percent) +
   coord_flip() +
   labs(title = "Words per Character and Genre",
+       subtitle = "Showing all characters",
        caption = "The Taming of the Shrew",
        x = NULL,
        y = NULL) +
   theme_classic(base_family = "Arial Narrow") 
 ```
+
+Below is the same chart but showing only characters who use both prose and verse.
+
+```{r layout="l-outset"}
+propdata <- 
+  propdata %>% 
+  filter(prop != 1,
+         prop != 0)
+
+selorder <- 
+  propdata %>% 
+  filter(genre == "verse") %>% 
+  arrange(-prop)
+
+propdata %>% 
+  ggplot(aes(x=factor(speaker, levels = selorder$speaker),
+             y=prop,
+             fill=genre)) +
+  geom_col(width = .4) +
+  scale_fill_viridis_d() +
+  scale_y_continuous(labels=scales::percent) +
+  coord_flip() +
+  labs(title = "Words per Character and Genre",
+       subtitle = "Showing only characters who mix genres",
+       caption = "The Taming of the Shrew",
+       x = NULL,
+       y = NULL) +
+  theme_classic(base_family = "Arial Narrow") 
+```
+
+
