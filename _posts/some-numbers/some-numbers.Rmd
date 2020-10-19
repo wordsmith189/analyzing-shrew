@@ -58,7 +58,7 @@ text <- import("../dataprep/text_prepped.RDS")
 
 First, let's see which character has how many words.
 
-```{r n words char, fig.cap="Number of words per character."}
+```{r n words char, fig.cap="Number of words per character.", fig.height=7}
 text %>% 
   count(speaker) %>% 
   ggplot(aes(x=reorder(speaker, n),
@@ -70,6 +70,7 @@ text %>%
                                                big.mark = ",")) +
   coord_flip() +
   labs(title = "Words per Character",
+       caption = "The Taming of the Shrew",
        x = NULL,
        y = NULL) +
   theme_classic(base_family = "Arial Narrow") +
@@ -89,6 +90,7 @@ text %>%
                                                big.mark = ",")) +
   coord_flip() +
   labs(title = "Words per Genre",
+       caption = "The Taming of the Shrew",
        x = NULL,
        y = NULL) +
   theme_classic(base_family = "Arial Narrow") +
