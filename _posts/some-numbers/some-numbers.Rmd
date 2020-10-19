@@ -179,8 +179,8 @@ mixers
 ```
 Let's see how they mix across the five acts. 
 
-```{r mixingbyact, fig.height=7, fig.width=11, layout="l-screen-inset shaded"}
-pal = wes_palette("BottleRocket2")[1:5]
+```{r mixingbyact, fig.height=7, fig.width=11, layout="l-screen-inset shaded", fig.cap="Speech volume across acts by genre."}
+pal = wes_palette("BottleRocket2")[c(1,5)]
 text %>% 
   filter(speaker %in% mixers) %>% 
   group_by(act) %>% 
@@ -192,7 +192,7 @@ text %>%
   scale_fill_manual(values = pal) +
   facet_wrap(~speaker, scales = "free_y") +
   labs(title = "Characters Mixing Genres Across Acts",
-       subtitle = "Showing only the ones who mix",
+       subtitle = "Showing only those who mix",
        caption = "The Taming of the Shrew",
        x = "Act",
        y = "Number of words") +
