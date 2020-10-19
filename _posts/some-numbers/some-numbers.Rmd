@@ -19,7 +19,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
                       cache = TRUE)
-pacman::p_load(rio, tidyverse)
+pacman::p_load(rio, tidyverse, wesanderson)
 ```
 
 ## Descriptive statistics
@@ -180,7 +180,7 @@ mixers
 Let's see how they mix across the five acts. 
 
 ```{r mixing by act, fig.height=7, fig.width=11, layout="l-screen-inset shaded"}
-pal = c("darkblue", "orange")
+pal = wes_palette("BottleRocket2")[1:5]
 text %>% 
   filter(speaker %in% mixers) %>% 
   group_by(act) %>% 
