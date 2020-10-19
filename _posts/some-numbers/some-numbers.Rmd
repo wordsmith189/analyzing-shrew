@@ -165,4 +165,38 @@ propdata %>%
   theme_classic(base_family = "Arial Narrow") 
 ```
 
+## Genre and Character by Act
+
+Let us focus on just the characters who use both genres. They are:
+
+```{r}
+mixers <- 
+  propdata %>% 
+  pull(speaker) %>% 
+  unique()
+
+mixers
+```
+Let's see how they mix across the five acts. 
+
+```{r mixing by act, fig.height=7, fig.width=12, layout="l-screen-inset shaded"}
+pal = c("darkblue", "orange")
+text %>% 
+  filter(speaker %in% mixers) %>% 
+  group_by(act) %>% 
+  count(speaker, genre) %>% 
+  ggplot(aes(x = factor(act),
+             y = n,
+             fill = genre)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = pal) +
+  facet_wrap(~speaker, scales = "free_y") +
+  labs(title = "Characters mixing Genres across Acts",
+       subtitle = "Showing only the ones who mix",
+       caption = "The Taming of the Shrew",
+       x = "Act",
+       y = "Number of words") +
+  theme_classic(base_family = "Arial Narrow")
+  
+```
 
