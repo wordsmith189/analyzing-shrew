@@ -55,6 +55,7 @@ It's not too terrible. Well -- *thee, thy* etc. should have been removed as stop
 ```{r tag-sentiments}
 text <- 
   text %>% 
+  mutate(word = tolower(word)) %>% 
   anti_join(stop_words) %>% 
   inner_join(get_sentiments("bing")) 
 
@@ -230,8 +231,10 @@ sentiments_char %>%
        y = "sentiment proportion") +
   theme_classic(base_family = "Arial Narrow") +
   theme(axis.text.x = element_text(angle = 35,
-                                   vjust = 0.7))
+                                   vjust = 0.7),
+        plot.caption = element_markdown())
 ```
+
 <aside>The numbers of items tagged in each category for this plot are great enough to let this analysis be fairly robust.</aside>
 
 ## Sentiment by Character and Genre
