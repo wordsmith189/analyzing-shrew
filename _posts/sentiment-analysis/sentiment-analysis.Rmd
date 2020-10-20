@@ -1,22 +1,199 @@
 ---
-title: "Sentiment Analysis"
+title: "3 - Sentiment Analysis"
 description: |
   A short description of the post.
 author:
-  - name: Lars Hinrichs
+  - name: "Lars Hinrichs"
     url: https://larshinrichs.site
-date: 10-18-2020
-draft: true
+    affiliation: "The University of Texas at Austin"
+    affiliation_url: https://liberalarts.utexas.edu/english
+date: 10-20-2020
+draft: false
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      cache = TRUE)
+pacman::p_load(rio, tidyverse, wesanderson,
+               tidytext, kableExtra, ggtext)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+```{r fig.cap="Sentiments!"}
+knitr::include_graphics("sentiments.jpg")
+```
+
+
+## Tagging the data
+
+We continue working with the previous version of the data -- with one word per row, with act, speaker, and genre marked -- and now add: (a) stopword removal and (b) neg./pos. sentiment tagging.
+
+We must concede that, although we have a version of the text here that is orthographically modernized, it's still written in an old form of English with a number of words that are not included in a modern-day sentiment lexicon such as [Bing Liu's](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html). 
+
+We can output a version of the text that has had the stopwords removed, and then shows us the words that were *not* mapped to a term in the sentiment dictionary (in other words, they were found neither in the stopwords list nor in the sentiment lists).
+
+<aside>Extracting just the first 25 entries from the "words" column.</aside>
+
+```{r antijoin-stop-and-sentiments}
+text <- import("../dataprep/text_prepped.RDS")
+
+text %>% 
+  anti_join(stop_words) %>% 
+  anti_join(get_sentiments("bing")) %>% 
+  slice(9:34) %>% 
+  pull(word)
+```
+It's not too terrible. Well -- *thee, thy* etc. should have been removed as stopwords; *stocks, rogues* and *denier* should have been counted as negative, and *Saint* as positive -- but it's alright. We can apply the method and trust it will tell us something informative Here, then, is the top of the list of words that were sentiment-tagged.
+
+<aside>I'm not aware of a Renaissance stopword list or sentiment dictionary, but it's something that a digital Shakespeare scholar should create on a grant project.</aside>
+
+```{r tag-sentiments}
+text <- 
+  text %>% 
+  anti_join(stop_words) %>% 
+  inner_join(get_sentiments("bing")) 
+
+text %>% export("text_sentiments.RDS")
+
+text %>% 
+  slice(1:12) %>% 
+  select(speaker, word, sentiment, everything()) %>% 
+  kbl(caption = "Top of the sentiment-tagged text object.") %>% 
+  kable_styling()
+```
+
+## Sentiment by character
+
+We can produce a value for the proportion of neg. and pos. terms out of the total number of terms tagged for each character.
+
+```{r}
+text_sentiment <- import("text_sentiments.RDS")
+
+speakertotals <- 
+  text_sentiment %>% 
+  count(speaker, name = "total_tagged")
+
+sentiments_char <- 
+  text_sentiment %>% 
+  count(speaker, sentiment) %>% 
+  left_join(speakertotals) %>% 
+  mutate(prop = n/total_tagged,
+         prop = format(prop, digits = 3)) %>% 
+  filter(total_tagged > 6)
+
+display <- 
+  sentiments_char %>% 
+  filter(sentiment == "positive") %>% 
+  arrange(prop) %>% 
+  pull(speaker)
+
+sentiments_char <- 
+  sentiments_char %>% 
+  mutate(speaker = 
+           factor(speaker, 
+                  levels = display),
+         sentiment = 
+           factor(sentiment,
+                  levels = c("positive", "negative")))
+  
+sentiments_char %>% 
+  head() %>% 
+  kbl(caption = "Sentiment scores per character") %>% 
+  kable_styling()
+```
+
+Let's visualize these. Using proportions (or percentages) means that all the characters are displayed on the same scale, even though some of them have very, very few words. When a character has only a couple of words scored, there's a bit of significance issue. Therefore I'll include the number of words scored per character in the visualization: it will be proportional to the width of the bars for each character.
+
+```{r sent-by-char, fig.cap="Proportion of sentiment scores per character. Label in white shows number of items scored per character as an indicator of reliability", layout="l-outset"}
+pal = wes_palette("Rushmore1")[c(3,4)]
+sentiments_char %>% 
+  na.omit() %>% 
+  ggplot(aes(x=speaker,
+             y=as.numeric(prop),
+             fill=sentiment
+             )) + 
+  #facet_wrap(~speaker) +
+  scale_y_continuous(breaks = seq(0, 1, by = .2)) +
+  geom_col() +
+  geom_text(aes(y = 0.8,
+                label = total_tagged),
+            color = "white") +
+  scale_fill_manual(values = pal) +
+  labs(title = "Sentiment by Character",
+       subtitle = "Proportion of tagged words",
+       caption = "The Taming of the Shrew",
+       x = NULL,
+       y = "sentiment proportion") +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(axis.text.x = element_text(angle = 35,
+                                   vjust = 0.7))
+```
+<aside>The numbers of items tagged in each category for this plot are great enough to let this analysis be fairly robust.</aside>
+
+## Sentiment by Character and Genre
+
+For this analysis, we break down the aggregate sentiment scores by character and genre. That is to say, we'll end up with a dataset that contains (up to) four rows per character: it splits two ways for genre and then two ways for sentiment. 
+
+```{r}
+speakertotals2 <- 
+  text_sentiment %>% 
+  count(speaker, genre, name = "total_tagged")
+  
+sentiments_char_gnr <- 
+  text_sentiment %>% 
+  count(speaker, genre, sentiment) %>% 
+  left_join(speakertotals2) %>% 
+  mutate(prop = n/total_tagged,
+         prop = format(prop, digits = 3))
+
+sentiments_char_gnr %>% 
+  slice(1:12) %>% 
+  kbl(caption = "Sentiment scores aggregated by character and genre.") %>% 
+  kable_styling()
+```
+
+Let us visualize these new numbers. A caveat: when there are too few items in a category (anything under about 4 has no statistical meaning), results must be taken with more than a grain of salt. Findings for the characters with more words can be trusted, however.
+
+```{r fig.width=12, fig.height=7, fig.cap="Crossing sentiment scores several ways.", layout="l-screen-inset shaded"}
+pal = wes_palette("Chevalier1")[c(1,2)]
+
+# Create a named vector to supply replacement label
+# for each facet of the plot 
+speakertotals3 <- 
+  speakertotals2 %>% 
+  pivot_wider(names_from = genre,
+              values_from = total_tagged) %>% 
+  mutate_all(replace_na, 0) %>% 
+  mutate(newlab = paste(speaker, "\nprose:", prose, "\U00B7 verse:", verse))
+speaker.labs <- speakertotals3 %>% pull(newlab)
+names(speaker.labs) <- speakertotals3 %>% pull(speaker)
+
+sentiments_char_gnr %>% 
+  na.omit() %>% 
+  ggplot(aes(x=genre,
+             y=as.numeric(prop),
+             fill=sentiment
+             )) + 
+  #facet_wrap(~speaker) +
+  scale_y_continuous(breaks = seq(0, 1, by = .4)) +
+  geom_col() +
+  # geom_text(aes(y = 0.8,
+  #               label = n),
+  #           color = "black") +
+  scale_fill_manual(values = pal) +
+  facet_wrap(~speaker, labeller = labeller(speaker = speaker.labs)) +
+  labs(title = "Sentiment by Character and Genre",
+       subtitle = "Proportion of tagged words, showing wordcounts in facet label",
+       caption = "*The Taming of the Shrew*",
+       x = NULL,
+       y = "sentiment proportion") +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(plot.caption = ggtext::element_markdown())
+```
+
 
