@@ -43,14 +43,15 @@ We can output a version of the text that has had the stopwords removed, and then
 text <- import("../dataprep/text_prepped.RDS")
 
 text %>% 
+  mutate(word = tolower(word)) %>% 
   anti_join(stop_words) %>% 
   anti_join(get_sentiments("bing")) %>% 
   slice(9:34) %>% 
   pull(word)
 ```
-It's not too terrible. Well -- *thee, thy* etc. should have been removed as stopwords; *stocks, rogues* and *denier* should have been counted as negative, and *Saint* as positive -- but it's alright. We can apply the method and trust it will tell us something informative Here, then, is the top of the list of words that were sentiment-tagged.
+It's not too terrible. Well -- *thee, thy* etc. should have been removed as stopwords, but it's alright. We can apply the method and trust it will tell us something informative Here, then, is the top of the list of words that were sentiment-tagged.
 
-<aside>I'm not aware of a Renaissance stopword list or sentiment dictionary, but it's something that a digital Shakespeare scholar should create on a grant project.</aside>
+<aside>I wonder if there is a stopword list or sentiment dictionary for Renaissance/Early Modern English. It seems like something that a digital scholar might have created by now.</aside>
 
 ```{r tag-sentiments}
 text <- 
