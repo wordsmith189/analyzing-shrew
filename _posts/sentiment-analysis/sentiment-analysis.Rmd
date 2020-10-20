@@ -67,7 +67,106 @@ text %>%
   kable_styling()
 ```
 
-## Sentiment by character
+## Sentiment by Genre and Act 
+
+### By Act
+
+First, an analysis that foregrounds textual structure more than character. The data is aggregated accordingly...
+
+```{r}
+text_sentiment <- import("text_sentiments.RDS")
+
+acttotals <- 
+  text_sentiment %>% 
+  count(act, name = "total_tagged")
+
+sentiments_act <- 
+  text_sentiment %>% 
+  count(act, sentiment) %>% 
+  left_join(acttotals) %>% 
+  mutate(prop = n/total_tagged,
+         prop = format(prop, digits = 3)) 
+
+sentiments_act %>% 
+  head() %>% 
+  kbl(caption = "Sentiment scores per act.") %>% 
+  kable_styling()
+
+```
+
+...and then plotted.
+
+```{r plot-sent-act, fig.cap="Sentiment per act.", layout="l-outset"}
+
+pal = wes_palette("Chevalier1")[c(1,2)]
+
+sentiments_act %>% 
+  ggplot(aes(x=as.factor(act),
+             y=as.numeric(prop),
+             fill=sentiment
+             )) + 
+  #facet_wrap(~speaker) +
+  scale_y_continuous(breaks = seq(0, 1, by = .4)) +
+  geom_col() +
+  geom_text(aes(y = 0.8,
+                label = total_tagged),
+            color = "white") +
+  scale_fill_manual(values = pal) +
+  labs(title = "Sentiment by Act",
+       subtitle = "Proportion of tagged words",
+       caption = "*The Taming of the Shrew*",
+       x = "act",
+       y = "sentiment proportion") +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(plot.caption = element_markdown())
+```
+### By Act and Genre
+
+First the data is converted...
+
+```{r}
+actgenretotals <- 
+  text_sentiment %>% 
+  count(act, genre, name = "total_tagged")
+
+sentiments_act_genre <- 
+  text_sentiment %>% 
+  count(act, genre, sentiment) %>% 
+  left_join(actgenretotals) %>% 
+  mutate(prop = n/total_tagged,
+         prop = format(prop, digits = 3)) 
+
+sentiments_act_genre %>% 
+  slice(1:8) %>% 
+  kbl(caption = "Sentiment scores per act and genre.") %>% 
+  kable_styling()
+```
+
+...and then plotted. 
+
+```{r plot-sent-act-genre, fig.cap="Sentiment per act and genre. Token counts are high enough for each act so the Ns aren't reported (but cp. other plots below).", layout="l-outset"}
+sentiments_act_genre %>% 
+  ggplot(aes(x=genre,
+             y=as.numeric(prop),
+             fill=sentiment
+             )) + 
+  #facet_wrap(~speaker) +
+  scale_y_continuous(breaks = seq(0, 1, by = .4)) +
+  geom_col() +
+  scale_fill_manual(values = pal) +
+  facet_wrap(~act) +
+  labs(title = "Sentiment by Act and Genre",
+       subtitle = "Proportion of tagged words",
+       caption = "*The Taming of the Shrew*",
+       x = "genre",
+       y = "sentiment proportion") +
+  theme_classic(base_family = "Arial Narrow") +
+  theme(plot.caption = element_markdown())
+```
+<aside>Kind of a nice trend here! A general pattern that only Act 2 departs from.</aside>
+
+
+## Sentiment by Character
 
 We can produce a value for the proportion of neg. and pos. terms out of the total number of terms tagged for each character.
 
@@ -126,7 +225,7 @@ sentiments_char %>%
   scale_fill_manual(values = pal) +
   labs(title = "Sentiment by Character",
        subtitle = "Proportion of tagged words",
-       caption = "The Taming of the Shrew",
+       caption = "*The Taming of the Shrew*",
        x = NULL,
        y = "sentiment proportion") +
   theme_classic(base_family = "Arial Narrow") +
