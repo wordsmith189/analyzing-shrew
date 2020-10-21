@@ -27,7 +27,7 @@ opts_chunk$set(echo=T,
 ```
 
 ```{r, echo=F}
-knitr::include_graphics("toolbox.png")
+knitr::include_graphics("toolbox.png", dpi = 240)
 ```
 
 ## What is digital text analysis?
