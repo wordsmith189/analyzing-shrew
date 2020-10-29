@@ -14,6 +14,7 @@ output:
     self_contained: false
     toc: true
     toc_depth: 4
+bibliography: references.bib
 ---
 
 ```{r setup}
@@ -27,7 +28,6 @@ knitr::opts_chunk$set(echo = F,
                       message = F, 
                       warning = F)
 ```
-
 
 ```{r load-data}
 corpus <- readLines("shrew_markup.txt") %>%
@@ -58,7 +58,6 @@ corpus <-
          ) %>% 
   filter(text != "")
 ```
-
 
 ```{r process-text-tags, eval=FALSE}
 newcorp <- tibble()
@@ -113,8 +112,6 @@ for (i in (1:nrow(corpus))){
 
 ```
 
-
-
 ```{r merge-corpus-newcorp, eval=FALSE}
 corpus <- 
   corpus %>% 
@@ -123,15 +120,12 @@ corpus <-
 rm(newcorp)
 ```
 
-
 ```{r init-tagging}
 p_load(scriptuRs, cleanNLP, reticulate)
 pypath <- "/usr/local/opt/python/bin/python3.7"
 use_python(pypath)
 cnlp_init_spacy()
 ```
-
-
 
 ```{r run-pos-tagging, eval=F}
 corpus_for_tagging <- 
@@ -176,10 +170,9 @@ corpus_postagged %>%
   kable_paper("hover")
 ```
 
-
 ## Data selection
 
-We'll extract the 14 speakers with the most words from the data. They are: 
+We'll extract the 14 speakers with the most words from the data. They are:
 
 ```{r narrow down data}
 topspeakers <- corpus_postagged %>% 
@@ -199,15 +192,15 @@ include_graphics("blocks.png")
 
 #### Verbal style
 
-Higher frequencies of verbs (and attendant parts of speech) indicate dynamic communication, social intelligence, action-focused modes of thought, relational psychology (i.e. relating to other characters).
+Higher frequencies of verbs (and attendant parts of speech) indicate dynamic communication, social intelligence, action-focused modes of thought, relational psychology (i.e. relating to other characters) [@pennebaker2014; @pennebaker2003a;  @biber1991].
 
 #### Nominal style
 
-Higher frequencies of nouns (and attendant parts of speech) indicate conceptual thinking, declarative intelligence, epistemological interest, fact-oriented modes of thought, investigative/academic psychology. 
+Higher frequencies of nouns (and attendant parts of speech) indicate conceptual thinking, declarative intelligence, epistemological interest, fact-oriented modes of thought, investigative/academic psychology.
 
 #### Note on significance
 
-Because of the high frequencies of tokens in the analysis of POS-tags, even small differences in proportions can be considered significant.
+Because of the high frequencies of tokens in the analysis of POS-tags, even small differences in proportions can be considered significant [@hinrichs2010].
 
 ## POS frequencies in the data
 
@@ -216,19 +209,21 @@ The data has been part-of-speech tagged in the background. The tagger we're usin
 ```{r}
 corpus_postagged %>% count(xpos) %>% pull(xpos)
 ```
-Thankfully, it also has a set of meta-categories, so I won't need to define any myself They are: 
+
+Thankfully, it also has a set of meta-categories, so I won't need to define any myself They are:
 
 ```{r}
 corpus_postagged %>% count(upos) %>% pull(upos)
 ```
+
 There are 15 of them.
 
 ### Definition of POS indices
 
-We are interested in "verbal" vs. "nominal" style. These can be measured in the frequencies of the "VERB" and the "NOUN" tags, respectively, but I want to also include the attendant POS groups that co-vary with those two:
+We are interested in "verbal" vs. "nominal" style. These can be measured in the frequencies of the "VERB" and the "NOUN" tags, respectively, but I want to also include the attendant POS groups that co-vary with those two [@mair1997; @hinrichs2010]:
 
-- verbs co-vary with auxiliary verbs and adverbs; and
-- nouns co-vary with determiners, adjectives, and prepositions.
+-   verbs co-vary with auxiliary verbs and adverbs; and
+-   nouns co-vary with determiners, adjectives, and prepositions.
 
 So I'll form two index groups:
 
@@ -242,9 +237,10 @@ Here are the relationships between verbal and nominal indices by the top-14 char
 ```{r first-pos-plot, fig.cap="Tokens in the index groups for nouns, verbs, and \"other\"."}
 df <- corpus_postagged %>% 
   filter(speaker %in% topspeakers$speaker) %>% 
-  mutate(indexgroup = case_when(upos %in% verb_index ~ "verb",
-                                upos %in% noun_index ~ "noun",
-                                TRUE                 ~ "other")
+  mutate(indexgroup = case_when(
+    upos %in% verb_index ~ "verb",
+    upos %in% noun_index ~ "noun",
+    TRUE                 ~ "other")
          )
 
 speakertotals <- 
@@ -266,8 +262,7 @@ df %>%
   theme(legend.position = "none")
 ```
 
-
-This graph does not communicate very clearly what we actually want to know, which is the ratio between frequency of tags in the noun group and those in the verb group. So let's eliminate "other" and focus only on the verb and noun tags. 
+This graph does not communicate very clearly what we actually want to know, which is the ratio between frequency of tags in the noun group and those in the verb group. So let's eliminate "other" and focus only on the verb and noun tags.
 
 ```{r fig.cap="Relative frequency of POS=tags in n/v index groups, shown as ratio between n/v.", layout="l-outset"}
 
@@ -340,4 +335,3 @@ p <-
 p
 
 ```
-
