@@ -8,6 +8,6 @@ description: |
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Dr. Doug Bruster's undergraduate honors Shakespeare class has generated questions about the textual economy of *The Taming of the Shrew*. In order to pursue them, this project sets up and executes some R-based analyses of an electronic version of the *Shrew* text.
+Dr. Douglas Bruster's undergraduate honors Shakespeare class has generated questions about the textual economy of *The Taming of the Shrew*. In order to pursue them, this project sets up and executes some R-based analyses of an electronic version of the *Shrew* text.
 
 Source code for all chapters of this blog are available at the Github link at top right (or [here](https://github.com/wordsmith189/analyzing-shrew)). The Rmd files are in the `/_posts` directory.

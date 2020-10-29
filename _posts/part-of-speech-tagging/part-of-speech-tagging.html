@@ -115,7 +115,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blocks.png","corpus_lines_speakergenre.RDS","corpus_postagged.RDS","part-of-speech-tagging_files/anchor-4.2.2/anchor.min.js","part-of-speech-tagging_files/bowser-1.9.3/bowser.min.js","part-of-speech-tagging_files/distill-2.2.21/template.v2.js","part-of-speech-tagging_files/figure-html5/first-pos-plot-1.png","part-of-speech-tagging_files/figure-html5/second-graph-1.png","part-of-speech-tagging_files/figure-html5/unnamed-chunk-3-1.png","part-of-speech-tagging_files/figure-html5/unnamed-chunk-4-1.png","part-of-speech-tagging_files/header-attrs-2.5/header-attrs.js","part-of-speech-tagging_files/jquery-1.11.3/jquery.min.js","part-of-speech-tagging_files/kePrint-0.0.1/kePrint.js","part-of-speech-tagging_files/lightable-0.0.1/lightable.css","part-of-speech-tagging_files/webcomponents-2.0.0/webcomponents.js","shrew_markup.txt"]}
+  {"type":"character","attributes":{},"value":["blocks.png","corpus_lines_speakergenre.RDS","corpus_postagged.RDS","part-of-speech-tagging_files/anchor-4.2.2/anchor.min.js","part-of-speech-tagging_files/bowser-1.9.3/bowser.min.js","part-of-speech-tagging_files/distill-2.2.21/template.v2.js","part-of-speech-tagging_files/figure-html5/first-pos-plot-1.png","part-of-speech-tagging_files/figure-html5/second-graph-1.png","part-of-speech-tagging_files/figure-html5/unnamed-chunk-3-1.png","part-of-speech-tagging_files/figure-html5/unnamed-chunk-4-1.png","part-of-speech-tagging_files/figure-html5/unnamed-chunk-5-1.png","part-of-speech-tagging_files/header-attrs-2.5/header-attrs.js","part-of-speech-tagging_files/jquery-1.11.3/jquery.min.js","part-of-speech-tagging_files/kePrint-0.0.1/kePrint.js","part-of-speech-tagging_files/lightable-0.0.1/lightable.css","part-of-speech-tagging_files/webcomponents-2.0.0/webcomponents.js","shrew_markup.txt"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1490,6 +1490,876 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
+<p>Below is a preview of the data after part-of-speech tagging.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+doc_id
+</th>
+<th style="text-align:right;">
+sid
+</th>
+<th style="text-align:right;">
+tid
+</th>
+<th style="text-align:left;">
+token
+</th>
+<th style="text-align:left;">
+token_with_ws
+</th>
+<th style="text-align:left;">
+lemma
+</th>
+<th style="text-align:left;">
+upos
+</th>
+<th style="text-align:left;">
+xpos
+</th>
+<th style="text-align:right;">
+tid_source
+</th>
+<th style="text-align:left;">
+relation
+</th>
+<th style="text-align:right;">
+linenumber
+</th>
+<th style="text-align:left;">
+speaker
+</th>
+<th style="text-align:left;">
+genre
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+-PRON-
+</td>
+<td style="text-align:left;">
+PRON
+</td>
+<td style="text-align:left;">
+PRP
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+nsubj
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+’ll
+</td>
+<td style="text-align:left;">
+’ll
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+VERB
+</td>
+<td style="text-align:left;">
+MD
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+aux
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+pheeze
+</td>
+<td style="text-align:left;">
+pheeze
+</td>
+<td style="text-align:left;">
+pheeze
+</td>
+<td style="text-align:left;">
+VERB
+</td>
+<td style="text-align:left;">
+VB
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+root
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+you
+</td>
+<td style="text-align:left;">
+you
+</td>
+<td style="text-align:left;">
+-PRON-
+</td>
+<td style="text-align:left;">
+PRON
+</td>
+<td style="text-align:left;">
+PRP
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+dobj
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+in
+</td>
+<td style="text-align:left;">
+in
+</td>
+<td style="text-align:left;">
+in
+</td>
+<td style="text-align:left;">
+ADP
+</td>
+<td style="text-align:left;">
+IN
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+prep
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+faith
+</td>
+<td style="text-align:left;">
+faith
+</td>
+<td style="text-align:left;">
+faith
+</td>
+<td style="text-align:left;">
+NOUN
+</td>
+<td style="text-align:left;">
+NN
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+pobj
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+DET
+</td>
+<td style="text-align:left;">
+DT
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+det
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+pair
+</td>
+<td style="text-align:left;">
+pair
+</td>
+<td style="text-align:left;">
+pair
+</td>
+<td style="text-align:left;">
+NOUN
+</td>
+<td style="text-align:left;">
+NN
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+root
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+of
+</td>
+<td style="text-align:left;">
+of
+</td>
+<td style="text-align:left;">
+of
+</td>
+<td style="text-align:left;">
+ADP
+</td>
+<td style="text-align:left;">
+IN
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+prep
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+stocks
+</td>
+<td style="text-align:left;">
+stocks
+</td>
+<td style="text-align:left;">
+stock
+</td>
+<td style="text-align:left;">
+NOUN
+</td>
+<td style="text-align:left;">
+NNS
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+pobj
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+you
+</td>
+<td style="text-align:left;">
+you
+</td>
+<td style="text-align:left;">
+-PRON-
+</td>
+<td style="text-align:left;">
+PRON
+</td>
+<td style="text-align:left;">
+PRP
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+nsubj
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+rogue
+</td>
+<td style="text-align:left;">
+rogue
+</td>
+<td style="text-align:left;">
+rogue
+</td>
+<td style="text-align:left;">
+VERB
+</td>
+<td style="text-align:left;">
+VBP
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+appos
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+HOSTESS
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+PROPN
+</td>
+<td style="text-align:left;">
+NNP
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+nsubj
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+are
+</td>
+<td style="text-align:left;">
+are
+</td>
+<td style="text-align:left;">
+be
+</td>
+<td style="text-align:left;">
+AUX
+</td>
+<td style="text-align:left;">
+VBP
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+ccomp
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+DET
+</td>
+<td style="text-align:left;">
+DT
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+det
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+baggage
+</td>
+<td style="text-align:left;">
+baggage
+</td>
+<td style="text-align:left;">
+baggage
+</td>
+<td style="text-align:left;">
+NOUN
+</td>
+<td style="text-align:left;">
+NN
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+attr
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+the
+</td>
+<td style="text-align:left;">
+DET
+</td>
+<td style="text-align:left;">
+DT
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+det
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Slys
+</td>
+<td style="text-align:left;">
+Slys
+</td>
+<td style="text-align:left;">
+Slys
+</td>
+<td style="text-align:left;">
+PROPN
+</td>
+<td style="text-align:left;">
+NNP
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+nsubj
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+are
+</td>
+<td style="text-align:left;">
+are
+</td>
+<td style="text-align:left;">
+be
+</td>
+<td style="text-align:left;">
+AUX
+</td>
+<td style="text-align:left;">
+VBP
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+root
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:left;">
+DET
+</td>
+<td style="text-align:left;">
+DT
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+det
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+SLY
+</td>
+<td style="text-align:left;">
+prose
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="data-selection">Data selection</h2>
 <p>We’ll extract the 14 speakers with the most words from the data. They are:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1669,8 +2539,8 @@ Figure 1: Tokens in the index groups for nouns, verbs, and “other”.
 </div>
 <p>This graph does not communicate very clearly what we actually want to know, which is the ratio between frequency of tags in the noun group and those in the verb group. So let’s eliminate “other” and focus only on the verb and noun tags.</p>
 <div class="layout-chunk" data-layout="l-outset">
-<div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="part-of-speech-tagging_files/figure-html5/unnamed-chunk-3-1.png" alt="Relative frequency of POS=tags in n/v index groups, shown as ratio between n/v." width="624" />
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="part-of-speech-tagging_files/figure-html5/unnamed-chunk-4-1.png" alt="Relative frequency of POS=tags in n/v index groups, shown as ratio between n/v." width="624" />
 <p class="caption">
 Figure 2: Relative frequency of POS=tags in n/v index groups, shown as ratio between n/v.
 </p>
@@ -1678,8 +2548,8 @@ Figure 2: Relative frequency of POS=tags in n/v index groups, shown as ratio bet
 </div>
 <p>Finally, we can break up the noun:verb ratio for each speaker by genre.</p>
 <div class="layout-chunk" data-layout="l-outset">
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="part-of-speech-tagging_files/figure-html5/unnamed-chunk-4-1.png" alt="Relative frequency of tags in n/v index groups, by genre." width="864" />
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="part-of-speech-tagging_files/figure-html5/unnamed-chunk-5-1.png" alt="Relative frequency of tags in n/v index groups, by genre." width="864" />
 <p class="caption">
 Figure 3: Relative frequency of tags in n/v index groups, by genre.
 </p>

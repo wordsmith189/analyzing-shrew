@@ -141,7 +141,7 @@ corpus_for_tagging <-
 
 corpus_annotated <- cleanNLP::cnlp_annotate(corpus_for_tagging,
                                   text_name = "strippedtext", 
-                                  verbose = T)
+                                  verbose = F)
 corpus_postagged <- 
   corpus_annotated$token %>% 
   left_join(corpus_annotated$document)
@@ -166,6 +166,16 @@ corpus_postagged %>%
 corpus_postagged <- 
   rio::import("corpus_postagged.RDS")
 ```
+
+Below is a preview of the data after part-of-speech tagging.
+
+```{r}
+corpus_postagged %>% 
+  head(20) %>% 
+  kbl() %>% 
+  kable_styling()
+```
+
 
 ## Data selection
 
