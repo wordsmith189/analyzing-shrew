@@ -259,7 +259,7 @@ df %>%
 
 This graph does not communicate very clearly what we actually want to know, which is the ratio between frequency of tags in the noun group and those in the verb group. So let's eliminate "other" and focus only on the verb and noun tags. 
 
-```{r fig.cap="Frequency of tags in index groups as ratio between n and v.", layout="l-outset"}
+```{r fig.cap="Relative frequency of POS=tags in n/v index groups, shown as ratio between n/v.", layout="l-outset"}
 
 speakertotals <- 
   df %>% 
@@ -299,7 +299,7 @@ p
 
 Finally, we can break up the noun:verb ratio for each speaker by genre.
 
-```{r fig.cap="Frequency of tags in n/v index groups, by genre.", layout="l-outset", fig.width=9, fig.height=10}
+```{r fig.cap="Relative frequency of tags in n/v index groups, by genre.", layout="l-outset", fig.width=9, fig.height=10}
 
 speakertotals <- 
   df %>% 
