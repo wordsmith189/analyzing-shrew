@@ -299,7 +299,7 @@ p
 
 Finally, we can break up the noun:verb ratio for each speaker by genre.
 
-```{r fig.cap="Frequency of tags in n/v index groups, by genre.", layout="l-outset"}
+```{r fig.cap="Frequency of tags in n/v index groups, by genre.", layout="l-outset", fig.width=9, fig.height=10}
 
 speakertotals <- 
   df %>% 
