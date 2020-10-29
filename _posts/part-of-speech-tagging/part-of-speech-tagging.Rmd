@@ -172,8 +172,8 @@ Below is a preview of the data after part-of-speech tagging.
 ```{r}
 corpus_postagged %>% 
   head(20) %>% 
-  kbl() %>% 
-  kable_styling()
+  kbl() %>%
+  kable_paper("hover")
 ```
 
 
@@ -188,7 +188,7 @@ topspeakers <- corpus_postagged %>%
 
 topspeakers %>% 
   kbl() %>% 
-  kable_styling()
+  kable_paper("hover", full_width = F)
 ```
 
 ```{r image, preview=TRUE}
