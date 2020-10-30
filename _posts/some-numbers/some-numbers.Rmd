@@ -8,6 +8,8 @@ author:
     affiliation: "The University of Texas at Austin"
     affiliation_url: https://liberalarts.utexas.edu/english
 date: 10-17-2020
+citation_url: https://titus-and-shrew.netlify.app
+slug: hinrichs2020shrew-2
 draft: false
 output:
   distill::distill_article:

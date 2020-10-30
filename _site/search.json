@@ -6,14 +6,14 @@
       "description": "This blog presents some digital text analyses of Shakespeare's The Taming of the Shrew.",
       "author": [],
       "contents": "\nDr. Douglas Bruster’s undergraduate honors Shakespeare class has generated questions about the textual economy of The Taming of the Shrew. In order to pursue them, this project sets up and executes some R-based analyses of an electronic version of the Shrew text.\nSource code for all chapters of this blog are available at the Github link at top right (or here). The Rmd files are in the /_posts directory.\n\n\n\n",
-      "last_modified": "2020-10-29T17:03:21-04:00"
+      "last_modified": "2020-10-30T11:28:08-04:00"
     },
     {
       "path": "index.html",
       "title": "The Digital Analysis of the Shrew",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2020-10-29T16:27:58-04:00"
+      "last_modified": "2020-10-30T11:28:09-04:00"
     }
   ],
   "collections": ["posts/posts.json"]
