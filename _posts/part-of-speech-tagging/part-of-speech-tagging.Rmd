@@ -163,7 +163,11 @@ corpus_postagged <-
   rio::import("corpus_postagged.RDS")
 ```
 
-Below is a preview of the data after part-of-speech tagging.
+## Applying POS-tags
+
+The *Shrew* text was annotated using the functionality of the `cleanNLP` package for R [@arnold2017]. Tagging for speaker and genre at the word level was included as in [previous steps](https://titus-and-shrew.netlify.app/posts/sentiment-analysis/) of the analysis. Below is a preview of the data after part-of-speech tagging.
+
+<aside>Since the tagger requires text input in line format, not word format, speaker and genre markup had to be recreated rather than preserved.</aside>
 
 ```{r}
 corpus_postagged %>% 

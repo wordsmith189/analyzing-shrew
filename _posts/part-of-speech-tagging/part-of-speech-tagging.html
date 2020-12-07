@@ -115,6 +115,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <meta name="citation_author_institution" content="The University of Texas at Austin"/>
   <!--/radix_placeholder_meta_tags-->
   
+  <meta name="citation_reference" content="citation_title=A tidy data model for natural language processing using cleanNLP;citation_publication_date=2017;citation_volume=9;citation_author=Taylor Arnold"/>
   <meta name="citation_reference" content="citation_title=Manual of information for the part-of-speech-tagged, post-edited ’brown’ corpora;citation_publication_date=2010;citation_volume=34;citation_author=Lars Hinrichs;citation_author=Nicholas Smith;citation_author=Birgit Waibel"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
@@ -1458,6 +1459,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#applying-pos-tags">Applying POS-tags</a></li>
 <li><a href="#data-selection">Data selection</a></li>
 <li><a href="#primer-why-pos-frequencies-are-interesting">Primer: why POS frequencies are interesting</a>
 <ul>
@@ -1499,7 +1501,11 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Below is a preview of the data after part-of-speech tagging.</p>
+<h2 id="applying-pos-tags">Applying POS-tags</h2>
+<p>The <em>Shrew</em> text was annotated using the functionality of the <code>cleanNLP</code> package for R <span class="citation" data-cites="arnold2017">(<a href="#ref-arnold2017" role="doc-biblioref">Arnold 2017</a>)</span>. Tagging for speaker and genre at the word level was included as in <a href="https://titus-and-shrew.netlify.app/posts/sentiment-analysis/">previous steps</a> of the analysis. Below is a preview of the data after part-of-speech tagging.</p>
+<aside>
+Since the tagger requires text input in line format, not word format, speaker and genre markup had to be recreated rather than preserved.
+</aside>
 <div class="layout-chunk" data-layout="l-body">
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2566,6 +2572,9 @@ Figure 3: Relative frequency of tags in n/v index groups, by genre.
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-arnold2017" class="csl-entry" role="doc-biblioentry">
+Arnold, Taylor. 2017. <span>“A Tidy Data Model for Natural Language Processing Using cleanNLP.”</span> <em>The R Journal</em> 9 (2): 1–20. <a href="https://journal.r-project.org/archive/2017/RJ-2017-035/index.html">https://journal.r-project.org/archive/2017/RJ-2017-035/index.html</a>.
+</div>
 <div id="ref-biber1991" class="csl-entry" role="doc-biblioentry">
 Biber, Douglas. 1991. <em>Variation Across Speech and Writing</em>. Cambridge University Press.
 </div>
